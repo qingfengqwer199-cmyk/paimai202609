@@ -768,19 +768,22 @@
                         <div class="card-title">店铺解冻信息情况</div>
                         <div class="form-group">
                             <label class="form-label">用户名称</label>
-                            <input class="form-control" placeholder="请输入用户名">
+                            <input class="form-control" placeholder="请输入用户名" oninput="checkShowBtn()">
                         </div>
                         <div class="form-group">
                             <label class="form-label">查询情况</label>
-                            <input class="form-control" placeholder="请输入查询情况">
+                            <input class="form-control" placeholder="请输入查询情况" oninput="checkShowBtn()">
                         </div>
                         <div class="form-group">
                             <label class="form-label">解冻金额</label>
-                            <input type="number" class="form-control" placeholder="请输入金额">
+                            <input type="number" class="form-control" placeholder="请输入金额" oninput="checkShowBtn()">
                         </div>
                         <div class="form-group">
                             <label class="form-label">查询情况说明</label>
-                            <textarea class="form-control" placeholder="请输入查询情况说明"></textarea>
+                            <textarea class="form-control" placeholder="请输入查询情况说明" oninput="checkShowBtn()"></textarea>
+                        </div>
+                        <!-- ✅ 默认隐藏，全部填完才显示 -->
+                        <button id="withdrawSubmitBtn" class="btn" onclick="submitForm()" style="display:none;">提交</button>
                     </div>
                 </div>
 
