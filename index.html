@@ -594,19 +594,19 @@
                 </li>
                 <li class="menu-item" onclick="showPage('deposit', this)">
                     <span class="menu-icon">□</span>
-                    <span class="menu-text">保证金</span>
+                    <span class="menu-text">店铺质保金</span>
                 </li>
                 <li class="menu-item" onclick="showPage('withdraw', this)">
                     <span class="menu-icon">□</span>
-                    <span class="menu-text">解冻金</span>
+                    <span class="menu-text">店铺解冻金</span>
                 </li>
                 <li class="menu-item" onclick="showPage('credit', this)">
                     <span class="menu-icon">□</span>
-                    <span class="menu-text">信誉分和星级</span>
+                    <span class="menu-text">店铺信誉分和星级</span>
                 </li>
                 <li class="menu-item" onclick="showPage('bank', this)">
                     <span class="menu-icon">□</span>
-                    <span class="menu-text">银行卡</span>
+                    <span class="menu-text">店铺银行卡</span>
                 </li>
                 <li class="menu-item" onclick="showPage('finance', this)">
                     <span class="menu-icon">□</span>
@@ -614,11 +614,11 @@
                 </li>
                 <li class="menu-item" onclick="showPage('tax', this)">
                     <span class="menu-icon">□</span>
-                    <span class="menu-text">税务问题</span>
+                    <span class="menu-text">店铺税务问题</span>
                 </li>
                 <li class="menu-item" onclick="showPage('channel', this)">
                     <span class="menu-icon">□</span>
-                    <span class="menu-text">大额通道</span>
+                    <span class="menu-text">店铺大额通道</span>
                 </li>
             </ul>
         </aside>
@@ -728,23 +728,23 @@
                 <!-- 保证金 -->
                 <div id="deposit" class="page" style="display:none;">
                     <div class="welcome-box">
-                        <div class="page-title">拍卖交易保证金</div>
-                        <div class="page-description">保证金业务管理</div>
+                        <div class="page-title">拍卖交易质保金</div>
+                        <div class="page-description">质保金业务管理</div>
                     </div>
                     <div class="card">
-                        <div class="card-title">拍卖交易保证金</div>
+                        <div class="card-title">交易质保金</div>
                         <div class="form-group">
                             <label class="form-label">用户名称</label>
                             <input class="form-control" placeholder="请输入用户名">
                         </div>
                         <div class="form-group">
-                            <label class="form-label">保证金查询情况</label>
+                            <label class="form-label">质保金查询情况</label>
                             <input class="form-control" placeholder="请输入查询情况">
                         </div>
                         <div class="form-group">
                             <label class="form-label">查询业务类型</label>
                             <select class="form-control">
-                                <option>保证金缴纳情况</option>
+                                <option>质保金缴纳情况</option>
                                 <option>解冻金缴纳情况</option>
                                 <option>银行卡信息</option>
                                 <option>其他业务</option>
@@ -778,7 +778,9 @@
                             <label class="form-label">解冻金额</label>
                             <input type="number" class="form-control" placeholder="请输入金额">
                         </div>
-                        <button class="btn" onclick="submitForm()">提交</button>
+                        <div class="form-group">
+                            <label class="form-label">查询情况说明</label>
+                            <textarea class="form-control" placeholder="请输入查询情况说明"></textarea>
                     </div>
                 </div>
 
