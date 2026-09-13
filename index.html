@@ -1769,6 +1769,19 @@
 
                     </div>
 
+                    
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            银行卡查询情况说明
+                        </label>
+
+                        <textarea class="form-control"
+                                  placeholder="请输入查询情况说明"
+                                  oninput="checkShowBtn()">
+                        </textarea>
+
+                    </div>
 
                     <button class="btn"
                             onclick="submitForm()">
@@ -1898,7 +1911,7 @@
                     <div class="form-group">
 
                         <label class="form-label">
-                            备注说明
+                            税务查询结果
                         </label>
 
                         <textarea class="form-control"
@@ -1942,14 +1955,14 @@
                 <div class="card">
 
                     <div class="card-title">
-                        通道信息
+                        通道信息查询
                     </div>
 
 
                     <div class="form-group">
 
                         <label class="form-label">
-                            通道名称
+                            用户名称
                         </label>
 
                         <input class="form-control"
@@ -1961,21 +1974,35 @@
                     <div class="form-group">
 
                         <label class="form-label">
-                            状态
+                            查询状态
                         </label>
 
 
                         <select class="form-control">
 
                             <option>
-                                正常
+                                未开通
                             </option>
 
                             <option>
-                                暂停
+                                已开通
                             </option>
 
                         </select>
+
+                    </div>
+
+                    
+                    <div class="form-group">
+
+                        <label class="form-label">
+                            查询结果
+                        </label>
+
+                        <textarea class="form-control"
+                                  placeholder="请输入查询情况说明"
+                                  oninput="checkShowBtn()">
+                        </textarea>
 
                     </div>
 
