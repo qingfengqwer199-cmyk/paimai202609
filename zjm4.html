@@ -1,0 +1,1075 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>商城后台管理系统</title>
+
+    <style>
+        /* =====================================================
+           全局
+        ===================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html,
+        body {
+            width: 100%;
+            min-height: 100%;
+        }
+
+        body {
+            font-family: "Microsoft YaHei", "PingFang SC", Arial, sans-serif;
+            background: #f3f1ec;
+            color: #222;
+        }
+
+        /* =====================================================
+           整体布局
+        ===================================================== */
+        .admin-container {
+            display: flex;
+            min-height: 100vh;
+            width: 100%;
+        }
+
+        /* =====================================================
+           左侧导航
+        ===================================================== */
+        .sidebar {
+            width: 267px;
+            min-width: 267px;
+            min-height: 100vh;
+            background: linear-gradient(180deg, #101010 0%, #181818 50%, #090909 100%);
+            color: #fff;
+            box-shadow: 4px 0 18px rgba(0, 0, 0, .20);
+            position: relative;
+            z-index: 10;
+        }
+
+        .logo-box {
+            height: 78px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(212, 175, 55, .30);
+            background: linear-gradient(135deg, #111111, #242424, #101010);
+        }
+
+        .logo-title {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 4px;
+            background: linear-gradient(90deg, #f6e6a8, #d4af37, #fff0a8, #b88718);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* =====================================================
+           左侧菜单
+        ===================================================== */
+        .menu {
+            list-style: none;
+            padding-top: 12px;
+        }
+
+        .menu-item {
+            height: 54px;
+            display: flex;
+            align-items: center;
+            padding: 0 24px;
+            cursor: pointer;
+            color: #c7c7c7;
+            border-left: 3px solid transparent;
+            transition: all .25s ease;
+        }
+
+        .menu-item:hover {
+            color: #f1d477;
+            background: linear-gradient(90deg, rgba(212, 175, 55, .15), rgba(212, 175, 55, .02));
+        }
+
+        .menu-item.active {
+            color: #fff;
+            border-left: 3px solid #d4af37;
+            background: linear-gradient(90deg, rgba(212, 175, 55, .25), rgba(212, 175, 55, .04));
+            box-shadow: inset 0 0 20px rgba(212, 175, 55, .05);
+        }
+
+        .menu-icon {
+            width: 34px;
+            min-width: 34px;
+            font-size: 18px;
+            color: #d4af37;
+            text-align: left;
+        }
+
+        .menu-text {
+            font-size: 16px;
+        }
+
+        /* =====================================================
+           右侧主体
+        ===================================================== */
+        .main-area {
+            flex: 1;
+            min-width: 0;
+        }
+
+        /* =====================================================
+           顶部黑金标题栏
+        ===================================================== */
+        .topbar {
+            height: 82px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 25px 0 30px;
+            color: #fff;
+            background: linear-gradient(120deg, #080808, #1c1c1c 45%, #0b0b0b);
+            border-bottom: 1px solid rgba(212, 175, 55, .45);
+            box-shadow: 0 3px 15px rgba(0, 0, 0, .20);
+        }
+
+        .top-title {
+            font-size: 17px;
+            letter-spacing: 1px;
+            color: #f1d477;
+            white-space: nowrap;
+        }
+
+        .top-right {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            gap: 7px;
+        }
+
+        .login-user {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            font-size: 14px;
+            color: #d8d8d8;
+        }
+
+        .login-name {
+            color: #f1d477;
+            font-weight: bold;
+            cursor: pointer;
+            padding: 3px 8px;
+            border-radius: 4px;
+            transition: .2s;
+        }
+
+        .login-name:hover {
+            color: #ffe9a0;
+            background: rgba(212, 175, 55, .15);
+        }
+
+        .edit-tip {
+            font-size: 11px;
+            color: #777;
+        }
+
+        .top-bottom {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        /* =====================================================
+           会员搜索
+        ===================================================== */
+        .member-search {
+            display: flex;
+            align-items: center;
+            height: 34px;
+        }
+
+        .member-search input {
+            width: 245px;
+            height: 34px;
+            padding: 0 12px;
+            outline: none;
+            border: 1px solid #80651d;
+            border-right: none;
+            border-radius: 5px 0 0 5px;
+            background: #181818;
+            color: #fff;
+            font-size: 13px;
+            transition: .2s;
+        }
+
+        .member-search input::placeholder {
+            color: #888;
+        }
+
+        .member-search input:focus {
+            border-color: #d4af37;
+            box-shadow: 0 0 8px rgba(212, 175, 55, .20);
+        }
+
+        .search-btn {
+            height: 34px;
+            padding: 0 16px;
+            border: 1px solid #b58a20;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            color: #fff;
+            font-size: 13px;
+            background: linear-gradient(135deg, #997117, #d4af37, #a07817);
+            transition: .2s;
+        }
+
+        .search-btn:hover {
+            background: linear-gradient(135deg, #c69a2b, #efd36d, #b4861d);
+        }
+
+        .time {
+            font-size: 14px;
+            color: #d8d8d8;
+            white-space: nowrap;
+        }
+
+        /* =====================================================
+           内容区域
+        ===================================================== */
+        .content {
+            padding: 25px;
+        }
+
+        .welcome-box {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            border: 1px solid #e6dfcf;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .05);
+        }
+
+        .page-title {
+            font-size: 30px;
+            font-weight: bold;
+            color: #161616;
+            margin-bottom: 15px;
+        }
+
+        .page-description {
+            color: #777;
+            font-size: 16px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 12px;
+            padding: 30px;
+            border: 1px solid #e6dfcf;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, .05);
+            margin-bottom: 25px;
+        }
+
+        .card-title {
+            font-size: 21px;
+            font-weight: bold;
+            margin-bottom: 25px;
+            color: #191919;
+            border-left: 4px solid #d4af37;
+            padding-left: 12px;
+        }
+
+        /* =====================================================
+           表单
+        ===================================================== */
+        .form-group {
+            margin-bottom: 22px;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 15px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-control {
+            width: 100%;
+            height: 45px;
+            padding: 0 13px;
+            border: 1px solid #d8d2c4;
+            border-radius: 5px;
+            outline: none;
+            font-size: 15px;
+            background: #fff;
+            transition: .2s;
+        }
+
+        .form-control:focus {
+            border-color: #c39a27;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, .12);
+        }
+
+        textarea.form-control {
+            height: 100px;
+            padding-top: 12px;
+            resize: vertical;
+        }
+
+        /* =====================================================
+           按钮
+        ===================================================== */
+        .btn {
+            height: 43px;
+            padding: 0 24px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 15px;
+            color: #fff;
+            background: linear-gradient(135deg, #b88918, #d4af37, #9a7314);
+            box-shadow: 0 4px 10px rgba(164, 124, 26, .25);
+            transition: .2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(164, 124, 26, .35);
+        }
+
+        /* =====================================================
+           数据表格
+        ===================================================== */
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+
+        .table th {
+            background: #181818;
+            color: #e7cb72;
+            padding: 14px;
+            text-align: left;
+        }
+
+        .table td {
+            padding: 14px;
+            border-bottom: 1px solid #eee;
+            color: #555;
+        }
+
+        .table tr:hover {
+            background: #faf7ef;
+        }
+
+        .status {
+            display: inline-block;
+            padding: 4px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+            background: #f4ecd6;
+            color: #987317;
+        }
+
+        /* =====================================================
+           分页
+        ===================================================== */
+        .pagination {
+            display: flex;
+            align-items: center;
+            gap: 7px;
+            margin-top: 25px;
+        }
+
+        .page-btn {
+            min-width: 36px;
+            height: 36px;
+            padding: 0 10px;
+            border: 1px solid #ddd;
+            background: #fff;
+            border-radius: 5px;
+            cursor: pointer;
+            color: #555;
+            transition: .2s;
+        }
+
+        .page-btn:hover {
+            border-color: #d4af37;
+            color: #a47c18;
+        }
+
+        .page-btn.active {
+            color: #fff;
+            background: linear-gradient(135deg, #b88918, #d4af37);
+            border-color: #d4af37;
+        }
+
+        /* =====================================================
+           搜索结果
+        ===================================================== */
+        .search-result {
+            display: none;
+            margin-top: 25px;
+            border: 1px solid #e5dfd0;
+            border-radius: 8px;
+            overflow: hidden;
+            background: #fff;
+        }
+
+        .search-result-title {
+            padding: 15px 18px;
+            background: #191919;
+            color: #e7cb72;
+            font-weight: bold;
+        }
+
+        .search-result-body {
+            padding: 20px;
+        }
+
+        .result-row {
+            display: flex;
+            padding: 12px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .result-row:last-child {
+            border-bottom: none;
+        }
+
+        .result-label {
+            width: 120px;
+            color: #888;
+        }
+
+        .result-value {
+            color: #333;
+            font-weight: bold;
+        }
+
+        /* =====================================================
+           弹窗
+        ===================================================== */
+        .modal {
+            display: none;
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, .65);
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-box {
+            width: 420px;
+            max-width: 90%;
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 15px 50px rgba(0, 0, 0, .35);
+        }
+
+        .modal-header {
+            padding: 18px 22px;
+            background: linear-gradient(120deg, #111, #292929, #101010);
+            color: #e7cb72;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .modal-body {
+            padding: 25px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            padding: 15px 25px 25px;
+        }
+
+        .cancel-btn {
+            height: 40px;
+            padding: 0 20px;
+            border: 1px solid #ddd;
+            background: #fff;
+            color: #555;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* =====================================================
+           手机适配
+        ===================================================== */
+        @media(max-width: 900px) {
+            .sidebar {
+                width: 210px;
+                min-width: 210px;
+            }
+
+            .topbar {
+                height: auto;
+                min-height: 82px;
+                padding: 12px 15px;
+            }
+
+            .top-title {
+                font-size: 14px;
+            }
+
+            .member-search input {
+                width: 180px;
+            }
+
+            .content {
+                padding: 15px;
+            }
+        }
+
+        @media(max-width: 650px) {
+            .sidebar {
+                width: 180px;
+                min-width: 180px;
+            }
+
+            .menu-item {
+                padding: 0 14px;
+            }
+
+            .menu-text {
+                font-size: 14px;
+            }
+
+            .topbar {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 10px;
+            }
+
+            .top-right {
+                align-items: flex-start;
+                width: 100%;
+            }
+
+            .top-bottom {
+                width: 100%;
+                flex-wrap: wrap;
+            }
+
+            .member-search {
+                max-width: 100%;
+            }
+
+            .member-search input {
+                width: 200px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="admin-container">
+
+        <!-- 左侧导航 -->
+        <aside class="sidebar">
+            <div class="logo-box">
+                <div class="logo-title">
+                    拍卖后台查询系统
+                </div>
+            </div>
+
+            <ul class="menu">
+                <li class="menu-item active" onclick="showPage('home', this)">
+                    <span class="menu-icon">⌂</span>
+                    <span class="menu-text">首页</span>
+                </li>
+                <li class="menu-item" onclick="showPage('users', this)">
+                    <span class="menu-icon">♟</span>
+                    <span class="menu-text">用户管理</span>
+                </li>
+                <li class="menu-item" onclick="showPage('deposit', this)">
+                    <span class="menu-icon">□</span>
+                    <span class="menu-text">保证金</span>
+                </li>
+                <li class="menu-item" onclick="showPage('withdraw', this)">
+                    <span class="menu-icon">□</span>
+                    <span class="menu-text">解冻金</span>
+                </li>
+                <li class="menu-item" onclick="showPage('credit', this)">
+                    <span class="menu-icon">□</span>
+                    <span class="menu-text">信誉分和星级</span>
+                </li>
+                <li class="menu-item" onclick="showPage('bank', this)">
+                    <span class="menu-icon">□</span>
+                    <span class="menu-text">银行卡</span>
+                </li>
+                <li class="menu-item" onclick="showPage('finance', this)">
+                    <span class="menu-icon">□</span>
+                    <span class="menu-text">会员账户状态查询</span>
+                </li>
+                <li class="menu-item" onclick="showPage('tax', this)">
+                    <span class="menu-icon">□</span>
+                    <span class="menu-text">税务问题</span>
+                </li>
+                <li class="menu-item" onclick="showPage('channel', this)">
+                    <span class="menu-icon">□</span>
+                    <span class="menu-text">大额通道</span>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- 右侧主体 -->
+        <main class="main-area">
+
+            <!-- 顶部栏 -->
+            <header class="topbar">
+                <div class="top-title">
+                    邦翰斯（香港）有限公司 拍卖管理系统
+                </div>
+
+                <div class="top-right">
+                    <div class="login-user">
+                        <span>登录人：</span>
+                        <span class="login-name" id="loginName" onclick="changeLoginName()">王桂英</span>
+                        <span class="edit-tip">点击修改</span>
+                    </div>
+
+                    <div class="top-bottom">
+                        <div class="member-search">
+                            <input type="text" id="memberSearch" placeholder="请输入会员姓名/手机号/会员编号" onkeydown="memberSearchEnter(event)">
+                            <button class="search-btn" onclick="searchMember()">搜索</button>
+                        </div>
+                        <div class="time" id="currentTime"></div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- 内容区域 -->
+            <section class="content">
+
+                <!-- 首页 -->
+                <div id="home" class="page">
+                    <div class="welcome-box">
+                        <div class="page-title">首页</div>
+                        <div class="page-description">欢迎进入后台系统</div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-title">系统概况</div>
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>项目</th>
+                                    <th>数据</th>
+                                    <th>状态</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>用户数量</td>
+                                    <td>29,501,286</td>
+                                    <td><span class="status">正常</span></td>
+                                </tr>
+                                <tr>
+                                    <td>正在拍卖订单数量</td>
+                                    <td>10000+</td>
+                                    <td><span class="status">正常</span></td>
+                                </tr>
+                                <tr>
+                                    <td>待处理业务</td>
+                                    <td>999+</td>
+                                    <td><span class="status">待处理</span></td>
+                                </tr>
+                                <tr>
+                                    <td>拍卖完成数量</td>
+                                    <td>10000+</td>
+                                    <td><span class="status">正常</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <div class="pagination">
+                            <button class="page-btn">上一页</button>
+                            <button class="page-btn active">1</button>
+                            <button class="page-btn">2</button>
+                            <button class="page-btn">3</button>
+                            <button class="page-btn">4</button>
+                            <button class="page-btn">5</button>
+                            <button class="page-btn">下一页</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 用户管理 -->
+                <div id="users" class="page" style="display:none;">
+                    <div class="welcome-box">
+                        <div class="page-title">用户管理</div>
+                        <div class="page-description">用户信息管理</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">用户信息</div>
+                        <div class="form-group">
+                            <label class="form-label">用户名称</label>
+                            <input class="form-control" placeholder="请输入用户名">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">手机号码</label>
+                            <input class="form-control" placeholder="请输入手机号码">
+                        </div>
+                        <button class="btn" onclick="submitForm()">提交</button>
+                    </div>
+                </div>
+
+                <!-- 保证金 -->
+                <div id="deposit" class="page" style="display:none;">
+                    <div class="welcome-box">
+                        <div class="page-title">拍卖交易保证金</div>
+                        <div class="page-description">保证金业务管理</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">拍卖交易保证金</div>
+                        <div class="form-group">
+                            <label class="form-label">用户名称</label>
+                            <input class="form-control" placeholder="请输入用户名">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">保证金查询情况</label>
+                            <input class="form-control" placeholder="请输入查询情况">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">查询业务类型</label>
+                            <select class="form-control">
+                                <option>保证金缴纳情况</option>
+                                <option>解冻金缴纳情况</option>
+                                <option>银行卡信息</option>
+                                <option>其他业务</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">查询情况说明</label>
+                            <textarea class="form-control" placeholder="请输入查询情况说明"></textarea>
+                        </div>
+                        <button class="btn" onclick="submitForm()">提交信息</button>
+                    </div>
+                </div>
+
+                <!-- 解冻金 -->
+                <div id="withdraw" class="page" style="display:none;">
+                    <div class="welcome-box">
+                        <div class="page-title">店铺解冻金缴纳情况</div>
+                        <div class="page-description">店铺解冻金业务管理</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">店铺解冻信息情况</div>
+                        <div class="form-group">
+                            <label class="form-label">用户名称</label>
+                            <input class="form-control" placeholder="请输入用户名">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">查询情况</label>
+                            <input class="form-control" placeholder="请输入查询情况">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">解冻金额</label>
+                            <input type="number" class="form-control" placeholder="请输入金额">
+                        </div>
+                        <button class="btn" onclick="submitForm()">提交</button>
+                    </div>
+                </div>
+
+                <!-- 信誉分和星级 -->
+                <div id="credit" class="page" style="display:none;">
+                    <div class="welcome-box">
+                        <div class="page-title">店铺信誉分和星级</div>
+                        <div class="page-description">用户信誉等级管理</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">用户信誉信息</div>
+                        <div class="form-group">
+                            <label class="form-label">用户名称</label>
+                            <input class="form-control" placeholder="请输入用户名">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">信誉分</label>
+                            <input type="number" class="form-control" value="100">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">星级</label>
+                            <select class="form-control">
+                                <option>★★★★★</option>
+                                <option>★★★★</option>
+                                <option>★★★</option>
+                                <option>★★</option>
+                                <option>★</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="submitForm()">保存</button>
+                    </div>
+                </div>
+
+                <!-- 银行卡 -->
+                <div id="bank" class="page" style="display:none;">
+                    <div class="welcome-box">
+                        <div class="page-title">用户银行卡登记信息</div>
+                        <div class="page-description">银行卡信息管理</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">银行卡信息</div>
+                        <div class="form-group">
+                            <label class="form-label">银行名称</label>
+                            <input class="form-control" placeholder="请输入银行名称">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">持卡人姓名</label>
+                            <input class="form-control" placeholder="请输入姓名">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">银行卡号</label>
+                            <input class="form-control" placeholder="请输入银行卡号">
+                        </div>
+                        <button class="btn" onclick="submitForm()">保存</button>
+                    </div>
+                </div>
+
+                <!-- 会员账户状态查询 -->
+                <div id="finance" class="page" style="display:none;">
+                    <div class="welcome-box">
+                        <div class="page-title">账户状态查询</div>
+                        <div class="page-description">账户状态查询</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">账户状态查询结果</div>
+                        <div class="form-group">
+                            <label class="form-label">用户名称</label>
+                            <input class="form-control" placeholder="请输入用户名">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">查询结果</label>
+                            <input class="form-control" placeholder="请输入内容">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">解决方案</label>
+                            <input type="text" class="form-control" placeholder="请输入解决方案">
+                        </div>
+                        <button class="btn" onclick="submitForm()">提交</button>
+                    </div>
+                </div>
+
+                <!-- 税务问题 -->
+                <div id="tax" class="page" style="display:none;">
+                    <div class="welcome-box">
+                        <div class="page-title">税务问题</div>
+                        <div class="page-description">税务信息管理</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">税务信息</div>
+                        <div class="form-group">
+                            <label class="form-label">用户名称</label>
+                            <input class="form-control" placeholder="请输入用户名">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">备注说明</label>
+                            <textarea class="form-control" placeholder="请输入税务相关说明"></textarea>
+                        </div>
+                        <button class="btn" onclick="submitForm()">保存</button>
+                    </div>
+                </div>
+
+                <!-- 大额通道 -->
+                <div id="channel" class="page" style="display:none;">
+                    <div class="welcome-box">
+                        <div class="page-title">大额通道</div>
+                        <div class="page-description">大额业务通道管理</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-title">通道信息</div>
+                        <div class="form-group">
+                            <label class="form-label">通道名称</label>
+                            <input class="form-control" placeholder="请输入通道名称">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">状态</label>
+                            <select class="form-control">
+                                <option>正常</option>
+                                <option>暂停</option>
+                            </select>
+                        </div>
+                        <button class="btn" onclick="submitForm()">保存</button>
+                    </div>
+                </div>
+
+                <!-- 会员搜索结果 -->
+                <div id="memberSearchResult" class="search-result">
+                    <div class="search-result-title">会员搜索结果</div>
+                    <div class="search-result-body">
+                        <div class="result-row">
+                            <div class="result-label">会员姓名</div>
+                            <div class="result-value" id="resultName">-</div>
+                        </div>
+                        <div class="result-row">
+                            <div class="result-label">会员编号</div>
+                            <div class="result-value" id="resultId">-</div>
+                        </div>
+                        <div class="result-row">
+                            <div class="result-label">手机号码</div>
+                            <div class="result-value" id="resultPhone">-</div>
+                        </div>
+                        <div class="result-row">
+                            <div class="result-label">当前状态</div>
+                            <div class="result-value">
+                                <span class="status">正常</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </section>
+        </main>
+    </div>
+
+    <!-- 修改登录人弹窗 -->
+    <div class="modal" id="nameModal">
+        <div class="modal-box">
+            <div class="modal-header">修改登录人姓名</div>
+            <div class="modal-body">
+                <label class="form-label">登录人姓名</label>
+                <input type="text" class="form-control" id="newLoginName" placeholder="请输入登录人姓名">
+            </div>
+            <div class="modal-footer">
+                <button class="cancel-btn" onclick="closeNameModal()">取消</button>
+                <button class="btn" onclick="saveLoginName()">确定</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showPage(pageId, element) {
+            const pages = document.querySelectorAll(".page");
+            pages.forEach(function (page) {
+                page.style.display = "none";
+            });
+
+            const target = document.getElementById(pageId);
+            if (target) {
+                target.style.display = "block";
+            }
+
+            const menus = document.querySelectorAll(".menu-item");
+            menus.forEach(function (menu) {
+                menu.classList.remove("active");
+            });
+
+            element.classList.add("active");
+        }
+
+        function updateTime() {
+            const now = new Date();
+            const year = now.getFullYear();
+            const month = String(now.getMonth() + 1).padStart(2, "0");
+            const day = String(now.getDate()).padStart(2, "0");
+            const weekList = ["日", "一", "二", "三", "四", "五", "六"];
+            const week = weekList[now.getDay()];
+            const hour = String(now.getHours()).padStart(2, "0");
+            const minute = String(now.getMinutes()).padStart(2, "0");
+            const second = String(now.getSeconds()).padStart(2, "0");
+
+            document.getElementById("currentTime").innerText =
+                `${year}/${month}/${day} 周${week} - ${hour}:${minute}:${second}`;
+        }
+
+        updateTime();
+        setInterval(updateTime, 1000);
+
+        function changeLoginName() {
+            const currentName = document.getElementById("loginName").innerText;
+            document.getElementById("newLoginName").value = currentName;
+            document.getElementById("nameModal").style.display = "flex";
+            setTimeout(function () {
+                document.getElementById("newLoginName").focus();
+            }, 100);
+        }
+
+        function closeNameModal() {
+            document.getElementById("nameModal").style.display = "none";
+        }
+
+        function saveLoginName() {
+            const newName = document.getElementById("newLoginName").value.trim();
+            if (newName === "") {
+                alert("登录人姓名不能为空！");
+                return;
+            }
+            document.getElementById("loginName").innerText = newName;
+            localStorage.setItem("loginUserName", newName);
+            closeNameModal();
+        }
+
+        function loadLoginName() {
+            const savedName = localStorage.getItem("loginUserName");
+            if (savedName) {
+                document.getElementById("loginName").innerText = savedName;
+            }
+        }
+        loadLoginName();
+
+        function searchMember() {
+            const keyword = document.getElementById("memberSearch").value.trim();
+            if (keyword === "") {
+                alert("请输入会员姓名、手机号或会员编号！");
+                return;
+            }
+
+            let memberName = "张三";
+            let memberId = "HY20260001";
+            let memberPhone = "138****8888";
+
+            if (keyword !== "张三") {
+                memberName = keyword;
+                memberId = "HY" + new Date().getFullYear() + "0001";
+                memberPhone = "138****8888";
+            }
+
+            document.getElementById("resultName").innerText = memberName;
+            document.getElementById("resultId").innerText = memberId;
+            document.getElementById("resultPhone").innerText = memberPhone;
+            document.getElementById("memberSearchResult").style.display = "block";
+        }
+
+        function memberSearchEnter(event) {
+            if (event.key === "Enter") {
+                searchMember();
+            }
+        }
+
+        function submitForm() {
+            alert("信息提交成功！");
+        }
+
+        document.getElementById("nameModal").addEventListener("click", function (event) {
+            if (event.target === this) {
+                closeNameModal();
+            }
+        });
+
+        document.getElementById("newLoginName").addEventListener("keydown", function (event) {
+            if (event.key === "Enter") {
+                saveLoginName();
+            }
+            if (event.key === "Escape") {
+                closeNameModal();
+            }
+        });
+    </script>
+</body>
+
+</html>
