@@ -343,36 +343,6 @@
             color: #987317;
         }
 
-        .pagination {
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            margin-top: 25px;
-        }
-
-        .page-btn {
-            min-width: 36px;
-            height: 36px;
-            padding: 0 10px;
-            border: 1px solid #ddd;
-            background: #fff;
-            border-radius: 5px;
-            cursor: pointer;
-            color: #555;
-            transition: .2s;
-        }
-
-        .page-btn:hover {
-            border-color: #d4af37;
-            color: #a47c18;
-        }
-
-        .page-btn.active {
-            color: #fff;
-            background: linear-gradient(135deg, #b88918, #d4af37);
-            border-color: #d4af37;
-        }
-
         .search-result {
             display: none;
             margin-top: 25px;
@@ -485,20 +455,12 @@
             width: 210mm;
             min-height: 297mm;
             margin: 0 auto;
-            padding: 22mm 20mm 18mm;
+            padding: 22mm 20mm 35mm;
             background: #fff;
             color: #222;
             box-shadow: 0 5px 25px rgba(0, 0, 0, .15);
             border: 1px solid #ddd;
-
-            /*
-             * 整个A4页面作为印章定位父级
-             */
             position: relative;
-
-            /*
-             * 允许印章覆盖文字
-             */
             overflow: visible;
         }
 
@@ -564,7 +526,7 @@
         }
 
         .sign-box {
-            width: 42%;
+            width: 44%;
             min-height: 100px;
         }
 
@@ -575,42 +537,10 @@
             z-index: 1;
         }
 
-        .stamp-area {
-            height: 65px;
-            border-bottom: 1px solid #777;
-            position: relative;
-            text-align: center;
-            color: #999;
-            padding-top: 25px;
-        }
-
-        .stamp-placeholder {
-            font-size: 13px;
-            color: #aaa;
-        }
-
-        .contract-date {
-            margin-top: 25px;
-            text-align: right;
-            font-size: 15px;
-        }
-
-        .contract-note {
-            margin-top: 30px;
-            font-size: 12px;
-            color: #888;
-            line-height: 1.7;
-        }
-
-
         /* =====================================================
            印章上传 / 整个合同自由拖动 / 缩放
         ===================================================== */
 
-        /*
-         * 原上传区域仍然存在，
-         * 但是不再作为印章的定位父级
-         */
         .seal-upload-area {
             width: 100%;
             height: 145px;
@@ -623,10 +553,6 @@
             touch-action: none;
         }
 
-
-        /*
-         * 上传按钮
-         */
         .seal-upload-btn {
             position: absolute;
             left: 50%;
@@ -652,10 +578,6 @@
             color: #76570b;
         }
 
-
-        /*
-         * 上传提示
-         */
         .seal-tip {
             position: absolute;
             left: 0;
@@ -668,119 +590,61 @@
             z-index: 2;
         }
 
-
-        /*
-         * =====================================================
-         * 印章主体
-         *
-         * JavaScript上传后会把印章移动到
-         * #contractPaper 下。
-         *
-         * 所以印章可以覆盖整个合同页面。
-         * =====================================================
-         */
         .seal-wrapper {
             position: absolute !important;
-
             left: 0;
             top: 0;
-
             width: 90px;
             height: 90px;
-
             transform: none !important;
-
-            /*
-             * 始终压在合同文字上面
-             */
             z-index: 99999 !important;
-
             cursor: move;
-
             user-select: none;
-
             touch-action: none;
-
             display: none;
         }
 
-
-        /*
-         * 印章图片
-         */
         .seal-image {
             width: 100%;
             height: 100%;
             object-fit: contain;
             display: block;
-
             pointer-events: none;
-
             user-select: none;
-
             -webkit-user-drag: none;
         }
 
-
-        /*
-         * 缩放按钮
-         */
         .seal-resize-handle {
             position: absolute;
             right: -6px;
             bottom: -6px;
-
             width: 16px;
             height: 16px;
-
             border-radius: 50%;
-
             background: #d4af37;
-
             border: 2px solid #fff;
-
             box-shadow: 0 1px 5px rgba(0, 0, 0, .35);
-
             cursor: nwse-resize;
-
             z-index: 100001 !important;
-
             touch-action: none;
         }
 
-
-        /*
-         * 删除按钮
-         */
         .seal-delete-btn {
             position: absolute;
-
             right: -13px;
             top: -13px;
-
             width: 23px;
             height: 23px;
-
             padding: 0;
-
             border: 1px solid #fff;
-
             border-radius: 50%;
-
             background: #222;
-
             color: #fff;
-
             font-size: 15px;
-
             line-height: 19px;
-
             cursor: pointer;
-
             z-index: 100002 !important;
-
             box-shadow: 0 1px 5px rgba(0, 0, 0, .35);
-
             touch-action: manipulation;
         }
 
@@ -788,30 +652,11 @@
             background: #a00000;
         }
 
-
-        /*
-         * 签字文字
-         */
-        .sign-line {
-            margin-top: 8px;
-            white-space: nowrap;
-            position: relative;
-            z-index: 1;
-        }
-
-
-        /*
-         * 上传完成后隐藏上传按钮
-         */
         .seal-upload-area.has-seal .seal-upload-btn,
         .seal-upload-area.has-seal .seal-tip {
             display: none;
         }
 
-
-        /*
-         * 截图/打印时隐藏操作按钮
-         */
         .contract-capture-mode .seal-upload-btn,
         .contract-capture-mode .seal-tip,
         .contract-capture-mode .seal-resize-handle,
@@ -819,111 +664,29 @@
             display: none !important;
         }
 
-
-        /*
-         * 截图时保持印章在文字上面
-         */
         .contract-capture-mode .seal-wrapper {
             z-index: 99999 !important;
         }
 
-
         @media(max-width: 1100px) {
-
             .contract-paper {
                 transform-origin: top center;
                 width: 210mm;
             }
-
             .contract-wrapper {
                 overflow-x: auto;
                 padding-bottom: 20px;
             }
-
         }
-
-
-        @media(max-width: 900px) {
-
-            .sidebar {
-                width: 210px;
-                min-width: 210px;
-            }
-
-            .topbar {
-                height: auto;
-                min-height: 82px;
-                padding: 12px 15px;
-            }
-
-            .top-title {
-                font-size: 14px;
-            }
-
-            .member-search input {
-                width: 180px;
-            }
-
-            .content {
-                padding: 15px;
-            }
-
-        }
-
-
-        @media(max-width: 650px) {
-
-            .sidebar {
-                width: 180px;
-                min-width: 180px;
-            }
-
-            .menu-item {
-                padding: 0 14px;
-            }
-
-            .menu-text {
-                font-size: 14px;
-            }
-
-            .topbar {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 10px;
-            }
-
-            .top-right {
-                align-items: flex-start;
-                width: 100%;
-            }
-
-            .top-bottom {
-                width: 100%;
-                flex-wrap: wrap;
-            }
-
-            .member-search {
-                max-width: 100%;
-            }
-
-            .member-search input {
-                width: 200px;
-            }
-
-        }
-
 
         @media print {
-
             body * {
                 visibility: hidden !important;
             }
-
             #contractPaper,
             #contractPaper * {
                 visibility: visible !important;
             }
-
             #contractPaper {
                 position: absolute;
                 left: 0;
@@ -934,14 +697,12 @@
                 box-shadow: none;
                 border: none;
             }
-
             .seal-upload-btn,
             .seal-tip,
             .seal-resize-handle,
             .seal-delete-btn {
                 display: none !important;
             }
-
         }
 
     </style>
@@ -953,4149 +714,1077 @@
 
 <div class="admin-container">
 
-
     <!-- 左侧导航 -->
-
     <aside class="sidebar">
-
         <div class="logo-box">
-
             <div class="logo-title">
                 拍卖后台查询系统
             </div>
-
         </div>
 
-
         <ul class="menu">
-
-            <li class="menu-item active"
-                onclick="showPage('home', this)">
-
+            <li class="menu-item active" onclick="showPage('home', this)">
                 <span class="menu-icon">⌂</span>
-
-                <span class="menu-text">
-                    首页
-                </span>
-
+                <span class="menu-text">首页</span>
             </li>
-
-
-            <li class="menu-item"
-                onclick="showPage('users', this)">
-
+            <li class="menu-item" onclick="showPage('users', this)">
                 <span class="menu-icon">♟</span>
-
-                <span class="menu-text">
-                    用户管理
-                </span>
-
+                <span class="menu-text">用户管理</span>
             </li>
-
-
-            <li class="menu-item"
-                onclick="showPage('deposit', this)">
-
+            <li class="menu-item" onclick="showPage('deposit', this)">
                 <span class="menu-icon">□</span>
-
-                <span class="menu-text">
-                    店铺质保金
-                </span>
-
+                <span class="menu-text">店铺质保金</span>
             </li>
-
-
-            <li class="menu-item"
-                onclick="showPage('withdraw', this)">
-
+            <li class="menu-item" onclick="showPage('withdraw', this)">
                 <span class="menu-icon">□</span>
-
-                <span class="menu-text">
-                    店铺解冻金
-                </span>
-
+                <span class="menu-text">店铺解冻金</span>
             </li>
-
-
-            <li class="menu-item"
-                onclick="showPage('credit', this)">
-
+            <li class="menu-item" onclick="showPage('credit', this)">
                 <span class="menu-icon">□</span>
-
-                <span class="menu-text">
-                    店铺信誉分和星级
-                </span>
-
+                <span class="menu-text">店铺信誉分和星级</span>
             </li>
-
-
-            <li class="menu-item"
-                onclick="showPage('bank', this)">
-
+            <li class="menu-item" onclick="showPage('bank', this)">
                 <span class="menu-icon">□</span>
-
-                <span class="menu-text">
-                    店铺银行卡
-                </span>
-
+                <span class="menu-text">店铺银行卡</span>
             </li>
-
-
-            <li class="menu-item"
-                onclick="showPage('finance', this)">
-
+            <li class="menu-item" onclick="showPage('finance', this)">
                 <span class="menu-icon">□</span>
-
-                <span class="menu-text">
-                    会员账户状态查询
-                </span>
-
+                <span class="menu-text">会员账户状态查询</span>
             </li>
-
-
-            <li class="menu-item"
-                onclick="showPage('tax', this)">
-
+            <li class="menu-item" onclick="showPage('tax', this)">
                 <span class="menu-icon">□</span>
-
-                <span class="menu-text">
-                    店铺税务问题
-                </span>
-
+                <span class="menu-text">店铺税务问题</span>
             </li>
-
-
-            <li class="menu-item"
-                onclick="showPage('channel', this)">
-
+            <li class="menu-item" onclick="showPage('channel', this)">
                 <span class="menu-icon">□</span>
-
-                <span class="menu-text">
-                    店铺大额通道
-                </span>
-
+                <span class="menu-text">店铺大额通道</span>
             </li>
-
-
-            <li class="menu-item"
-                onclick="showPage('contract', this)">
-
+            <li class="menu-item" onclick="showPage('contract', this)">
                 <span class="menu-icon">□</span>
-
-                <span class="menu-text">
-                    卖家质保金合同
-                </span>
-
+                <span class="menu-text">卖家质保金合同</span>
             </li>
-
         </ul>
-
     </aside>
 
-
     <!-- 右侧主体 -->
-
     <main class="main-area">
 
-
         <!-- 顶部栏 -->
-
         <header class="topbar">
-
             <div class="top-title">
                 邦翰斯（香港）有限公司 拍卖管理系统
             </div>
 
-
             <div class="top-right">
-
                 <div class="login-user">
-
-                    <span>
-                        登录人：
-                    </span>
-
-                    <span class="login-name"
-                          id="loginName"
-                          onclick="changeLoginName()">
-
-                        王桂英
-
-                    </span>
-
+                    <span>登录人：</span>
+                    <span class="login-name" id="loginName" onclick="changeLoginName()">王桂英</span>
                 </div>
-
 
                 <div class="top-bottom">
-
                     <div class="member-search">
-
-                        <input type="text"
-                               id="memberSearch"
-                               placeholder="请输入会员姓名/手机号/会员编号"
-                               onkeydown="memberSearchEnter(event)">
-
-
-                        <button class="search-btn"
-                                onclick="searchMember()">
-
-                            搜索
-
-                        </button>
-
+                        <input type="text" id="memberSearch" placeholder="请输入会员姓名/手机号/会员编号" onkeydown="memberSearchEnter(event)">
+                        <button class="search-btn" onclick="searchMember()">搜索</button>
                     </div>
-
-
-                    <div class="time"
-                         id="currentTime">
-                    </div>
-
+                    <div class="time" id="currentTime"></div>
                 </div>
-
             </div>
-
         </header>
 
-
         <!-- 内容区域 -->
-
         <section class="content">
 
-
             <!-- 首页 -->
-
-            <div id="home"
-                 class="page">
-
+            <div id="home" class="page">
                 <div class="welcome-box">
-
-                    <div class="page-title">
-                        首页
-                    </div>
-
-                    <div class="page-description">
-                        欢迎进入后台系统
-                    </div>
-
+                    <div class="page-title">首页</div>
+                    <div class="page-description">欢迎进入后台系统</div>
                 </div>
-
-
                 <div class="card">
-
-                    <div class="card-title">
-                        系统概况
-                    </div>
-
-
+                    <div class="card-title">系统概况</div>
                     <table class="table">
-
                         <thead>
-
                         <tr>
-
-                            <th>
-                                项目
-                            </th>
-
-                            <th>
-                                数据
-                            </th>
-
-                            <th>
-                                状态
-                            </th>
-
+                            <th>项目</th>
+                            <th>数据</th>
+                            <th>状态</th>
                         </tr>
-
                         </thead>
-
-
                         <tbody>
-
                         <tr>
-
-                            <td>
-                                用户数量
-                            </td>
-
-                            <td>
-                                2,999,999+
-                            </td>
-
-                            <td>
-
-                                <span class="status">
-                                    正常
-                                </span>
-
-                            </td>
-
+                            <td>用户数量</td>
+                            <td>2,999,999+</td>
+                            <td><span class="status">正常</span></td>
                         </tr>
-
-
                         <tr>
-
-                            <td>
-                                正在拍卖订单数量
-                            </td>
-
-                            <td>
-                                9999+
-                            </td>
-
-                            <td>
-
-                                <span class="status">
-                                    正常
-                                </span>
-
-                            </td>
-
+                            <td>正在拍卖订单数量</td>
+                            <td>9999+</td>
+                            <td><span class="status">正常</span></td>
                         </tr>
-
-
                         <tr>
-
-                            <td>
-                                待处理业务
-                            </td>
-
-                            <td>
-                                999+
-                            </td>
-
-                            <td>
-
-                                <span class="status">
-                                    待处理
-                                </span>
-
-                            </td>
-
+                            <td>待处理业务</td>
+                            <td>999+</td>
+                            <td><span class="status">待处理</span></td>
                         </tr>
-
-
                         <tr>
-
-                            <td>
-                                拍卖交易完成数量
-                            </td>
-
-                            <td>
-                                10000+
-                            </td>
-
-                            <td>
-
-                                <span class="status">
-                                    正常
-                                </span>
-
-                            </td>
-
+                            <td>拍卖交易完成数量</td>
+                            <td>10000+</td>
+                            <td><span class="status">正常</span></td>
                         </tr>
-
                         </tbody>
-
                     </table>
-
-
-                    <div class="pagination">
-
-                        <button class="page-btn">
-                            上一页
-                        </button>
-
-                        <button class="page-btn active">
-                            1
-                        </button>
-
-                        <button class="page-btn">
-                            2
-                        </button>
-
-                        <button class="page-btn">
-                            3
-                        </button>
-
-                        <button class="page-btn">
-                            4
-                        </button>
-
-                        <button class="page-btn">
-                            5
-                        </button>
-
-                        <button class="page-btn">
-                            下一页
-                        </button>
-
-                    </div>
-
                 </div>
-
             </div>
-
 
             <!-- 用户管理 -->
-
-            <div id="users"
-                 class="page"
-                 style="display:none;">
-
+            <div id="users" class="page" style="display:none;">
                 <div class="welcome-box">
-
-                    <div class="page-title">
-                        用户管理
-                    </div>
-
-                    <div class="page-description">
-                        用户信息管理
-                    </div>
-
+                    <div class="page-title">用户管理</div>
+                    <div class="page-description">用户信息管理</div>
                 </div>
-
-
                 <div class="card">
-
-                    <div class="card-title">
-                        用户信息
-                    </div>
-
-
+                    <div class="card-title">用户信息</div>
                     <div class="form-group">
-
-                        <label class="form-label">
-                            用户名称
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入用户名">
-
+                        <label class="form-label">用户名称</label>
+                        <input class="form-control" placeholder="请输入用户名">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            手机号码
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入手机号码">
-
+                        <label class="form-label">手机号码</label>
+                        <input class="form-control" placeholder="请输入手机号码">
                     </div>
-
-
-                    <button class="btn"
-                            onclick="submitForm()">
-
-                        提交
-
-                    </button>
-
+                    <button class="btn" onclick="submitForm()">提交</button>
                 </div>
-
             </div>
-
 
             <!-- 保证金 -->
-
-            <div id="deposit"
-                 class="page"
-                 style="display:none;">
-
+            <div id="deposit" class="page" style="display:none;">
                 <div class="welcome-box">
-
-                    <div class="page-title">
-                        质保金缴纳查询
-                    </div>
-
-                    <div class="page-description">
-                        质保金业务管理
-                    </div>
-
+                    <div class="page-title">质保金缴纳查询</div>
+                    <div class="page-description">质保金业务管理</div>
                 </div>
-
-
                 <div class="card">
-
-                    <div class="card-title">
-                        交易质保金
-                    </div>
-
-
+                    <div class="card-title">交易质保金</div>
                     <div class="form-group">
-
-                        <label class="form-label">
-                            用户名称
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入用户名">
-
+                        <label class="form-label">用户名称</label>
+                        <input class="form-control" placeholder="请输入用户名">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            质保金缴纳情况
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入查询情况">
-
+                        <label class="form-label">质保金缴纳情况</label>
+                        <input class="form-control" placeholder="请输入查询情况">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            查询业务类型
-                        </label>
-
-
+                        <label class="form-label">查询业务类型</label>
                         <select class="form-control">
-
-                            <option>
-                                质保金缴纳情况
-                            </option>
-
-                            <option>
-                                解冻金缴纳情况
-                            </option>
-
-                            <option>
-                                银行卡信息
-                            </option>
-
-                            <option>
-                                其他业务
-                            </option>
-
+                            <option>质保金缴纳情况</option>
+                            <option>解冻金缴纳情况</option>
+                            <option>银行卡信息</option>
+                            <option>其他业务</option>
                         </select>
-
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            查询结果详细情况以及解决办法
-                        </label>
-
-                        <textarea class="form-control"
-                                  placeholder="请输入查询情况说明">
-                        </textarea>
-
+                        <label class="form-label">查询结果详细情况以及解决办法</label>
+                        <textarea class="form-control" placeholder="请输入查询情况说明"></textarea>
                     </div>
-
-
-                    <button class="btn"
-                            onclick="submitForm()">
-
-                        提交信息
-
-                    </button>
-
+                    <button class="btn" onclick="submitForm()">提交信息</button>
                 </div>
-
             </div>
-
 
             <!-- 解冻金 -->
-
-            <div id="withdraw"
-                 class="page"
-                 style="display:none;">
-
+            <div id="withdraw" class="page" style="display:none;">
                 <div class="welcome-box">
-
-                    <div class="page-title">
-                        店铺冻结情况查询
-                    </div>
-
-                    <div class="page-description">
-                        查询业务管理
-                    </div>
-
+                    <div class="page-title">店铺冻结情况查询</div>
+                    <div class="page-description">查询业务管理</div>
                 </div>
-
-
                 <div class="card">
-
-                    <div class="card-title">
-                        详细情况
-                    </div>
-
-
+                    <div class="card-title">详细情况</div>
                     <div class="form-group">
-
-                        <label class="form-label">
-                            用户名称
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入用户名"
-                               oninput="checkShowBtn()">
-
+                        <label class="form-label">用户名称</label>
+                        <input class="form-control" placeholder="请输入用户名" oninput="checkShowBtn()">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            详细查询情况
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入查询情况"
-                               oninput="checkShowBtn()">
-
+                        <label class="form-label">详细查询情况</label>
+                        <input class="form-control" placeholder="请输入查询情况" oninput="checkShowBtn()">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            账户被冻结总金额
-                        </label>
-
-                        <input type="number"
-                               class="form-control"
-                               placeholder="请输入金额"
-                               oninput="checkShowBtn()">
-
+                        <label class="form-label">账户被冻结总金额</label>
+                        <input type="number" class="form-control" placeholder="请输入金额" oninput="checkShowBtn()">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            详细情况说明以及解决办法
-                        </label>
-
-                        <textarea class="form-control"
-                                  placeholder="请输入查询情况说明"
-                                  oninput="checkShowBtn()">
-                        </textarea>
-
+                        <label class="form-label">详细情况说明以及解决办法</label>
+                        <textarea class="form-control" placeholder="请输入查询情况说明" oninput="checkShowBtn()"></textarea>
                     </div>
-
-
-                    <button id="withdrawSubmitBtn"
-                            class="btn"
-                            onclick="submitForm()"
-                            style="display:none;">
-
-                        提交
-
-                    </button>
-
+                    <button id="withdrawSubmitBtn" class="btn" onclick="submitForm()" style="display:none;">提交</button>
                 </div>
-
             </div>
-
 
             <!-- 信誉分 -->
-
-            <div id="credit"
-                 class="page"
-                 style="display:none;">
-
+            <div id="credit" class="page" style="display:none;">
                 <div class="welcome-box">
-
-                    <div class="page-title">
-                        店铺信誉分和星级
-                    </div>
-
-                    <div class="page-description">
-                        用户信誉等级管理
-                    </div>
-
+                    <div class="page-title">店铺信誉分和星级</div>
+                    <div class="page-description">用户信誉等级管理</div>
                 </div>
-
-
                 <div class="card">
-
-                    <div class="card-title">
-                        用户信誉信息
-                    </div>
-
-
+                    <div class="card-title">用户信誉信息</div>
                     <div class="form-group">
-
-                        <label class="form-label">
-                            用户名称
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入用户名">
-
+                        <label class="form-label">用户名称</label>
+                        <input class="form-control" placeholder="请输入用户名">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            信誉分
-                        </label>
-
-                        <input type="number"
-                               class="form-control"
-                               value="100">
-
+                        <label class="form-label">信誉分</label>
+                        <input type="number" class="form-control" value="100">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            星级
-                        </label>
-
-
+                        <label class="form-label">星级</label>
                         <select class="form-control">
-
-                            <option>
-                                ★★★★★
-                            </option>
-
-                            <option>
-                                ★★★★
-                            </option>
-
-                            <option>
-                                ★★★
-                            </option>
-
-                            <option>
-                                ★★
-                            </option>
-
-                            <option>
-                                ★
-                            </option>
-
+                            <option>★★★★★</option>
+                            <option>★★★★</option>
+                            <option>★★★</option>
+                            <option>★★</option>
+                            <option>★</option>
                         </select>
-
                     </div>
-
-                    
                     <div class="form-group">
-
-                        <label class="form-label">
-                            查询情况说明
-                        </label>
-
-                        <textarea class="form-control"
-                                  placeholder="请输入查询情况说明"
-                                  oninput="checkShowBtn()">
-                        </textarea>
-
+                        <label class="form-label">查询情况说明</label>
+                        <textarea class="form-control" placeholder="请输入查询情况说明" oninput="checkShowBtn()"></textarea>
                     </div>
-
-                    <button class="btn"
-                            onclick="submitForm()">
-
-                        保存
-
-                    </button>
-
+                    <button class="btn" onclick="submitForm()">保存</button>
                 </div>
-
             </div>
-
 
             <!-- 银行卡 -->
-
-            <div id="bank"
-                 class="page"
-                 style="display:none;">
-
+            <div id="bank" class="page" style="display:none;">
                 <div class="welcome-box">
-
-                    <div class="page-title">
-                        用户银行卡登记信息
-                    </div>
-
-                    <div class="page-description">
-                        银行卡信息管理
-                    </div>
-
+                    <div class="page-title">用户银行卡登记信息</div>
+                    <div class="page-description">银行卡信息管理</div>
                 </div>
-
-
                 <div class="card">
-
-                    <div class="card-title">
-                        银行卡信息
-                    </div>
-
-
+                    <div class="card-title">银行卡信息</div>
                     <div class="form-group">
-
-                        <label class="form-label">
-                            银行名称
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入银行名称">
-
+                        <label class="form-label">银行名称</label>
+                        <input class="form-control" placeholder="请输入银行名称">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            持卡人姓名
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入姓名">
-
+                        <label class="form-label">持卡人姓名</label>
+                        <input class="form-control" placeholder="请输入姓名">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            银行卡号
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入银行卡号">
-
+                        <label class="form-label">银行卡号</label>
+                        <input class="form-control" placeholder="请输入银行卡号">
                     </div>
-
-                    
                     <div class="form-group">
-
-                        <label class="form-label">
-                            银行卡查询情况说明
-                        </label>
-
-                        <textarea class="form-control"
-                                  placeholder="请输入查询情况说明"
-                                  oninput="checkShowBtn()">
-                        </textarea>
-
+                        <label class="form-label">银行卡查询情况说明</label>
+                        <textarea class="form-control" placeholder="请输入查询情况说明" oninput="checkShowBtn()"></textarea>
                     </div>
-
-                    <button class="btn"
-                            onclick="submitForm()">
-
-                        保存
-
-                    </button>
-
+                    <button class="btn" onclick="submitForm()">保存</button>
                 </div>
-
             </div>
-
 
             <!-- 账户状态 -->
-
-            <div id="finance"
-                 class="page"
-                 style="display:none;">
-
+            <div id="finance" class="page" style="display:none;">
                 <div class="welcome-box">
-
-                    <div class="page-title">
-                        账户状态查询
-                    </div>
-
-                    <div class="page-description">
-                        账户状态查询
-                    </div>
-
+                    <div class="page-title">账户状态查询</div>
+                    <div class="page-description">账户状态查询</div>
                 </div>
-
-
                 <div class="card">
-
-                    <div class="card-title">
-                        账户状态查询结果
-                    </div>
-
-
+                    <div class="card-title">账户状态查询结果</div>
                     <div class="form-group">
-
-                        <label class="form-label">
-                            用户名称
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入用户名">
-
+                        <label class="form-label">用户名称</label>
+                        <input class="form-control" placeholder="请输入用户名">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            查询结果
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入内容">
-
+                        <label class="form-label">查询结果</label>
+                        <input class="form-control" placeholder="请输入内容">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            解决方案
-                        </label>
-
-                        <input type="text"
-                               class="form-control"
-                               placeholder="请输入解决方案">
-
+                        <label class="form-label">解决方案</label>
+                        <input type="text" class="form-control" placeholder="请输入解决方案">
                     </div>
-
-
-                    <button class="btn"
-                            onclick="submitForm()">
-
-                        提交
-
-                    </button>
-
+                    <button class="btn" onclick="submitForm()">提交</button>
                 </div>
-
             </div>
-
 
             <!-- 税务 -->
-
-            <div id="tax"
-                 class="page"
-                 style="display:none;">
-
+            <div id="tax" class="page" style="display:none;">
                 <div class="welcome-box">
-
-                    <div class="page-title">
-                        税务问题
-                    </div>
-
-                    <div class="page-description">
-                        税务信息管理
-                    </div>
-
+                    <div class="page-title">税务问题</div>
+                    <div class="page-description">税务信息管理</div>
                 </div>
-
-
                 <div class="card">
-
-                    <div class="card-title">
-                        税务信息
-                    </div>
-
-
+                    <div class="card-title">税务信息</div>
                     <div class="form-group">
-
-                        <label class="form-label">
-                            用户名称
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入用户名">
-
+                        <label class="form-label">用户名称</label>
+                        <input class="form-control" placeholder="请输入用户名">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            税务查询结果
-                        </label>
-
-                        <textarea class="form-control"
-                                  placeholder="请输入税务相关说明">
-                        </textarea>
-
+                        <label class="form-label">税务查询结果</label>
+                        <textarea class="form-control" placeholder="请输入税务相关说明"></textarea>
                     </div>
-
-
-                    <button class="btn"
-                            onclick="submitForm()">
-
-                        保存
-
-                    </button>
-
+                    <button class="btn" onclick="submitForm()">保存</button>
                 </div>
-
             </div>
-
 
             <!-- 大额通道 -->
-
-            <div id="channel"
-                 class="page"
-                 style="display:none;">
-
+            <div id="channel" class="page" style="display:none;">
                 <div class="welcome-box">
-
-                    <div class="page-title">
-                        大额通道
-                    </div>
-
-                    <div class="page-description">
-                        大额业务通道管理
-                    </div>
-
+                    <div class="page-title">大额通道</div>
+                    <div class="page-description">大额业务通道管理</div>
                 </div>
-
-
                 <div class="card">
-
-                    <div class="card-title">
-                        通道信息查询
-                    </div>
-
-
+                    <div class="card-title">通道信息查询</div>
                     <div class="form-group">
-
-                        <label class="form-label">
-                            用户名称
-                        </label>
-
-                        <input class="form-control"
-                               placeholder="请输入通道名称">
-
+                        <label class="form-label">用户名称</label>
+                        <input class="form-control" placeholder="请输入通道名称">
                     </div>
-
-
                     <div class="form-group">
-
-                        <label class="form-label">
-                            查询状态
-                        </label>
-
-
+                        <label class="form-label">查询状态</label>
                         <select class="form-control">
-
-                            <option>
-                                未开通
-                            </option>
-
-                            <option>
-                                已开通
-                            </option>
-
+                            <option>未开通</option>
+                            <option>已开通</option>
                         </select>
-
                     </div>
-
-                    
                     <div class="form-group">
-
-                        <label class="form-label">
-                            查询结果
-                        </label>
-
-                        <textarea class="form-control"
-                                  placeholder="请输入查询情况说明"
-                                  oninput="checkShowBtn()">
-                        </textarea>
-
+                        <label class="form-label">查询结果</label>
+                        <textarea class="form-control" placeholder="请输入查询情况说明" oninput="checkShowBtn()"></textarea>
                     </div>
-
-
-                    <button class="btn"
-                            onclick="submitForm()">
-
-                        保存
-
-                    </button>
-
+                    <button class="btn" onclick="submitForm()">保存</button>
                 </div>
-
             </div>
-
 
             <!-- =====================================================
                  卖方质保金合同
             ===================================================== -->
-
-            <div id="contract"
-                 class="page"
-                 style="display:none;">
-
+            <div id="contract" class="page" style="display:none;">
                 <div class="welcome-box">
-
-                    <div class="page-title">
-                        卖家质保金合同
-                    </div>
-
-                    <div class="page-description">
-                        A4合同编辑、截图及打印
-                    </div>
-
+                    <div class="page-title">卖家质保金合同</div>
+                    <div class="page-description">A4合同编辑、截图及打印</div>
                 </div>
 
-
                 <div class="card">
-
-                    <div class="card-title">
-                        合同编辑
-                    </div>
-
+                    <div class="card-title">合同编辑</div>
 
                     <div class="contract-tools">
-
-                        <button class="btn"
-                                onclick="saveContract()">
-
-                            保存内容
-
-                        </button>
-
-
-                        <button class="btn"
-                                onclick="screenshotContract()">
-
-                            一键截图
-
-                        </button>
-
-
-                        <button class="btn"
-                                onclick="printContract()">
-
-                            打印合同
-
-                        </button>
-
-
-                        <button class="cancel-btn"
-                                onclick="clearContract()">
-
-                            恢复默认
-
-                        </button>
-
+                        <button class="btn" onclick="saveContract()">保存内容</button>
+                        <button class="btn" onclick="screenshotContract()">一键截图</button>
+                        <button class="btn" onclick="printContract()">打印合同</button>
+                        <button class="cancel-btn" onclick="clearContract()">恢复默认</button>
                     </div>
 
-
                     <div class="contract-wrapper">
+                        <div class="contract-paper" id="contractPaper">
 
-                        <div class="contract-paper"
-                             id="contractPaper">
-
-
-                            <div class="contract-title editable"
-                                 contenteditable="true">
-
+                            <div class="contract-title editable" contenteditable="true">
                                 卖方质保金合同
-
                             </div>
-
 
                             <div class="contract-info">
-
                                 <div>
-
                                     合同编号：
-
-                                    <span class="contract-line editable"
-                                          contenteditable="true">
-
+                                    <span class="contract-line editable" contenteditable="true">
                                         HT20260001
-
                                     </span>
-
                                 </div>
-
-
                                 <div>
-
                                     签订日期：
-
-                                    <span class="contract-line editable"
-                                          contenteditable="true">
-
-                                        2026年　　月　　日
-
+                                    <span class="contract-line editable" contenteditable="true">
+                                        2026年  月  日
                                     </span>
-
                                 </div>
-
                             </div>
 
-
                             <div class="contract-body">
-
-
                                 <div class="contract-section">
-
-                                    <div class="contract-section-title">
-
-                                        乙方（卖方）
-
-                                    </div>
-
-
-                                    <div class="editable"
-                                         contenteditable="true">
-
+                                    <div class="contract-section-title">乙方（卖方）</div>
+                                    <div class="editable" contenteditable="true">
                                         姓  名：____________________________
-
                                         <br>
-
                                         身份证：____________________________
-
                                         <br>
-
                                         电  话：____________________________
-
                                     </div>
-
                                 </div>
 
-
                                 <div class="contract-section">
-
-                                    <div class="contract-section-title">
-
-                                        鉴于：
-
-                                    </div>
-
-
-                                    <div class="editable"
-                                         contenteditable="true">
-
+                                    <div class="contract-section-title">鉴于：</div>
+                                    <div class="editable" contenteditable="true">
                                         1. 双方约定的标的成交总价为人民币/币种：
                                         ____________________（以下简称“成交价”）。
-
                                         <br>
-
-                                        2. 截至合同签署日，甲方已按主合同向乙方支付成交价50%，
+                                        2. 截至合同签署日，甲方已按主合同向乙方支付成交价50%,
                                         即 ____________________（币种：________）。
-
                                         <br>
-
                                         3. 为保障乙方按主合同履行交付、交易等义务，
                                         同时保障甲方按时完成剩余款项支付，
                                         双方就乙方缴纳质保金达成协议。
-
                                     </div>
-
                                 </div>
 
-
                                 <div class="contract-section">
-
-                                    <div class="contract-section-title">
-
-                                        第一条　质保金金额及缴纳
-
-                                    </div>
-
-
-                                    <div class="editable"
-                                         contenteditable="true">
-
+                                    <div class="contract-section-title">第一条 质保金金额及缴纳</div>
+                                    <div class="editable" contenteditable="true">
                                         1. 乙方缴纳成交价1%的质保金，
                                         金额为 ____________________（币种：________）。
-
                                         <br>
-
                                         2. 合同生效后__1__个工作日内，
                                         乙方应将质保金支付至指定账户。
-
                                         <br>
-
                                         3. 该质保金性质为履约保障金，
                                         用于保障乙方依照主合同履行相关义务。
-
                                         <br>
-
                                         4. 甲方收到质保金后，应向乙方出具书面收款确认。
-
                                     </div>
-
                                 </div>
 
-
                                 <div class="contract-section">
-
-                                    <div class="contract-section-title">
-
-                                        第二条　买方尾款支付义务
-
-                                    </div>
-
-
-                                    <div class="editable"
-                                         contenteditable="true">
-
-                                        1. 甲方已支付成交价50%，即
-                                        ____________________，
-                                        作为首付款/定金，具体性质及法律效力以主合同约定为准。
-
+                                    <div class="contract-section-title">第二条 买方尾款支付义务</div>
+                                    <div class="editable" contenteditable="true">
+                                        1. 甲方已支付成交价50%,即
+                                        ____________________,
+                                        作为首付款/定金,具体性质及法律效力以主合同约定为准。
                                         <br>
-
-                                        2. 除双方另有书面约定外，
+                                        2. 除双方另有书面约定外,
                                         甲方不得无正当理由拒绝、拖延或阻碍剩余50%尾款支付及交易完成。
-
                                     </div>
-
                                 </div>
 
-
                                 <div class="contract-section">
-
-                                    <div class="contract-section-title">
-
-                                        第三条　卖方履约及质保金返还
-
-                                    </div>
-
-
-                                    <div class="editable"
-                                         contenteditable="true">
-
-                                        1. 乙方收到质保金后，应按照主合同约定履行卖方义务，包括：
-
+                                    <div class="contract-section-title">第三条 卖方履约及质保金返还</div>
+                                    <div class="editable" contenteditable="true">
+                                        1. 乙方收到质保金后,应按照主合同约定履行卖方义务,包括:
                                         <br>
-
                                         （1）提供真实、合法、有效的交易文件；
-
                                         <br>
-
                                         （2）完成标的交付、过户或转让；
-
                                         <br>
-
                                         （3）保证标的不存在重大权利瑕疵；
-
                                         <br>
-
                                         （4）按照约定时间配合完成交易；
-
                                         <br>
-
                                         （5）履行主合同约定的其他义务。
-
                                         <br>
-
-                                        2. 若乙方完成上述义务且甲方按照主合同支付剩余50%尾款，
+                                        2. 若乙方完成上述义务且甲方按照主合同支付剩余50%尾款,
                                         乙方缴纳的1%质保金应在__1日__内无息返还。
-
                                     </div>
-
                                 </div>
 
-
                                 <div class="contract-section">
-
-                                    <div class="contract-section-title">
-
-                                        第四条　买方未按时支付尾款的违约责任
-
-                                    </div>
-
-
-                                    <div class="editable"
-                                         contenteditable="true">
-
-                                        1. 在乙方已经履行主合同义务且不存在乙方违约或其他乙方原因的情况下，
-                                        甲方未按照约定期限支付剩余50%尾款的，构成违约。
-
+                                    <div class="contract-section-title">第四条 买方未按时支付尾款的违约责任</div>
+                                    <div class="editable" contenteditable="true">
+                                        1. 在乙方已经履行主合同义务且不存在乙方违约或其他乙方原因的情况下,
+                                        甲方未按照约定期限支付剩余50%尾款的,构成违约。
                                         <br>
-
-                                        2. 甲方逾期超过__1__个工作日的，
-                                        乙方有权要求甲方继续履行付款义务，并要求甲方承担相应违约责任。
-
+                                        2. 甲方逾期超过__1__个工作日的,
+                                        乙方有权要求甲方继续履行付款义务,并要求甲方承担相应违约责任。
                                         <br>
-
-                                        3. 特别约定：若甲方未按期完成剩余50%尾款支付，
-                                        且该未付款情形并非因乙方原因造成，
+                                        3. 特别约定：若甲方未按期完成剩余50%尾款支付,
+                                        且该未付款情形并非因乙方原因造成,
                                         则甲方已支付50%款项中可按照本合同约定提取10%
                                         作为乙方违约补偿。
-
                                         <br>
-
-                                        4. 违约补偿金计算方式为：
-
+                                        4. 违约补偿金计算方式为:
                                         <br>
-
                                         成交价 × 50% × 10% = 成交价5%。
-
                                         <br>
-
-                                        例如：成交价为1,000,000元，
-                                        甲方已经支付500,000元，
+                                        例如：成交价为1,000,000元,
+                                        甲方已经支付500,000元,
                                         则违约补偿金为50,000元。
-
                                         <br>
-
-                                        5. 上述补偿金可按照双方书面约定，
-                                        从甲方已经支付的50%款项中直接划转或扣除后支付给乙方，
+                                        5. 上述补偿金可按照双方书面约定,
+                                        从甲方已经支付的50%款项中直接划转或扣除后支付给乙方,
                                         剩余款项按照双方关于解除、退款或继续履行的约定处理。
-
                                     </div>
-
                                 </div>
 
-
                                 <div class="contract-section">
-
-                                    <div class="contract-section-title">
-
-                                        第五条　卖方质保金处理
-
-                                    </div>
-
-
-                                    <div class="editable"
-                                         contenteditable="true">
-
-                                        1. 甲方按照约定支付剩余50%尾款，
-                                        且乙方不存在违约行为的，
+                                    <div class="contract-section-title">第五条 卖方质保金处理</div>
+                                    <div class="editable" contenteditable="true">
+                                        1. 甲方按照约定支付剩余50%尾款,
+                                        且乙方不存在违约行为的,
                                         乙方缴纳的1%质保金按照第三条约定返还。
-
                                         <br>
-
-                                        2. 若乙方因自身原因未履行主合同义务，
-                                        导致交易无法完成，乙方应按照主合同承担相应违约责任；
+                                        2. 若乙方因自身原因未履行主合同义务,
+                                        导致交易无法完成,乙方应按照主合同承担相应违约责任；
                                         甲方有权依照主合同及适用法律要求乙方承担相应责任。
-
                                         <br>
-
-                                        3. 除双方另有明确书面约定外，
-                                        在乙方不存在违约行为的情况下，
+                                        3. 除双方另有明确书面约定外,
+                                        在乙方不存在违约行为的情况下,
                                         甲方不得擅自没收、扣留或处分乙方质保金。
-
                                     </div>
-
                                 </div>
 
-
                                 <div class="contract-section">
-
-                                    <div class="contract-section-title">
-
-                                        第六条　违约责任适用
-
-                                    </div>
-
-
-                                    <div class="editable"
-                                         contenteditable="true">
-
-                                        1. 只有在乙方已经履约且甲方未按期支付剩余50%尾款的情况下，
+                                    <div class="contract-section-title">第六条 违约责任适用</div>
+                                    <div class="editable" contenteditable="true">
+                                        1. 只有在乙方已经履约且甲方未按期支付剩余50%尾款的情况下,
                                         方可适用第四条约定的10%违约补偿。
-
                                         <br>
-
                                         2. 若甲方未支付尾款的原因包括乙方违约、
-                                        交易文件存在重大问题、标的存在重大未披露权利瑕疵，
-                                        或因乙方原因导致交易无法完成，
+                                        交易文件存在重大问题、标的存在重大未披露权利瑕疵,
+                                        或因乙方原因导致交易无法完成,
                                         则甲方不承担第四条约定的违约补偿责任。
-
                                         <br>
-
-                                        3. 因不可抗力或双方无法控制的客观原因导致交易延迟的，
-                                        双方应协商顺延履行期限，原则上不直接认定任何一方违约。
-
+                                        3. 因不可抗力或双方无法控制的客观原因导致交易延迟的,
+                                        双方应协商顺延履行期限,原则上不直接认定任何一方违约。
                                     </div>
-
                                 </div>
 
-
                                 <div class="contract-section">
-
-                                    <div class="contract-section-title">
-
-                                        第七条　交易终止及款项处理
-
-                                    </div>
-
-
-                                    <div class="editable"
-                                         contenteditable="true">
-
-                                        若甲方发生尾款支付违约，乙方可根据实际情况选择：
-
+                                    <div class="contract-section-title">第七条 交易终止及款项处理</div>
+                                    <div class="editable" contenteditable="true">
+                                        若甲方发生尾款支付违约,乙方可根据实际情况选择：
                                         <br>
-
                                         1. 要求甲方继续支付剩余50%尾款并完成交易；
-
                                         <br>
-
                                         或
-
                                         <br>
-
-                                        2. 在符合合同解除条件的情况下解除交易，
+                                        2. 在符合合同解除条件的情况下解除交易,
                                         并按照第四条约定从甲方已经支付的50%款项中提取10%
                                         作为乙方违约补偿。
-
                                         <br>
-
                                         上述选择由乙方以书面方式通知甲方。
-
                                     </div>
-
                                 </div>
 
-
                                 <div class="contract-section">
-
-                                    <div class="contract-section-title">
-
-                                        第八条　争议解决
-
-                                    </div>
-
-
-                                    <div class="editable"
-                                         contenteditable="true">
-
-                                        1. 本合同的订立、效力、解释、履行及争议解决，
+                                    <div class="contract-section-title">第八条 争议解决</div>
+                                    <div class="editable" contenteditable="true">
+                                        1. 本合同的订立、效力、解释、履行及争议解决,
                                         适用双方约定的相关法律。
-
                                         <br>
-
-                                        2. 因本合同产生的任何争议，
+                                        2. 因本合同产生的任何争议,
                                         双方应首先通过友好协商解决。
-
                                         <br>
-
-                                        3. 协商不成的，
-                                        双方可按照主合同约定提交约定的仲裁委员会仲裁，
+                                        3. 协商不成的,
+                                        双方可按照主合同约定提交约定的仲裁委员会仲裁,
                                         或依法向有管辖权的人民法院提起诉讼。
-
                                     </div>
-
                                 </div>
-
 
                                 <div class="contract-section">
-
-                                    <div class="contract-section-title">
-
-                                        质保金收款确认
-
-                                    </div>
-
-
-                                    <div class="editable"
-                                         contenteditable="true">
-
+                                    <div class="contract-section-title">质保金收款确认</div>
+                                    <div class="editable" contenteditable="true">
                                         乙方于____年____月____日向甲方支付本合同约定质保金：
-
                                         <br>
-
-                                        成交价1%，即 ____________________（币种：________）。
-
+                                        成交价1%,即 ____________________（币种：________）。
                                         <br>
-
                                         甲方确认已实际收到上述质保金。
-
                                     </div>
-
                                 </div>
-
                             </div>
-
 
                             <!-- ==================== 签章区域 ==================== -->
-
                             <div class="contract-sign">
 
-
                                 <!-- 甲方 -->
-
                                 <div class="sign-box">
-
-                                    <div class="sign-title">
-                                        甲方签字/盖章
-                                    </div>
-
-
-                                    <div class="seal-upload-area"
-                                         id="sealArea">
-
-
-                                        <div class="seal-wrapper"
-                                             id="sealWrapper"
-                                             style="display:none;">
-
-                                            <img id="sealImage"
-                                                 class="seal-image"
-                                                 src=""
-                                                 alt="甲方印章"
-                                                 draggable="false">
-
-
-                                            <div class="seal-resize-handle"
-                                                 id="sealResizeHandle">
-                                            </div>
-
-
-                                            <button type="button"
-                                                    class="seal-delete-btn"
-                                                    onclick="removeSeal(event)">
-
-                                                ×
-
-                                            </button>
-
+                                    <div class="sign-title">甲方签字/盖章</div>
+                                    <div class="seal-upload-area" id="sealArea" style="border-bottom: none;">
+                                        <div class="seal-wrapper" id="sealWrapper" style="display:none;">
+                                            <img id="sealImage" class="seal-image" src="" alt="甲方印章" draggable="false">
+                                            <div class="seal-resize-handle" id="sealResizeHandle"></div>
+                                            <button type="button" class="seal-delete-btn" onclick="removeSeal(event)">×</button>
                                         </div>
-
-
-                                        <label class="seal-upload-btn"
-                                               id="sealUploadBtn">
-
+                                        <label class="seal-upload-btn" id="sealUploadBtn">
                                             📷 上传印章
-
-                                            <input type="file"
-                                                   id="sealInput"
-                                                   accept="image/png,image/jpeg,image/jpg,image/webp"
-                                                   hidden>
-
+                                            <input type="file" id="sealInput" accept="image/png,image/jpeg,image/jpg,image/webp" hidden>
                                         </label>
+                                        <div class="seal-tip">上传后可自由拖动印章，并拖动右下角调整大小</div>
+                                    </div>
 
-
-                                        <div class="seal-tip">
-
-                                            上传后可自由拖动印章，并拖动右下角调整大小
-
+                                    <div style="width: 290px; margin-top: 8px;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                            <span style="width: 4em; text-align-last: justify; display: inline-block;">签字：</span>
+                                            <span contenteditable="true" style="border-bottom:1px solid #000; outline:none; width: 225px; display:inline-block; min-height:22px; padding: 0 4px; word-break: break-all;"></span>
                                         </div>
-
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <span style="width: 4em; text-align-last: justify; display: inline-block;">日期：</span>
+                                            <div style="width: 225px; text-align: left; white-space: nowrap;">
+                                                <span contenteditable="true" style="width:42px; display:inline-block; text-align:center; border-bottom:1px solid #000; outline:none; min-height:20px;"></span>年
+                                                <span contenteditable="true" style="width:30px; display:inline-block; text-align:center; border-bottom:1px solid #000; outline:none; min-height:20px;"></span>月
+                                                <span contenteditable="true" style="width:30px; display:inline-block; text-align:center; border-bottom:1px solid #000; outline:none; min-height:20px;"></span>日
+                                            </div>
+                                        </div>
                                     </div>
-
-
-                                    <div class="sign-line">
-                                       签字：<input type="text" style="border:none; border-bottom:1px solid #000; outline:none; width:200px; vertical-align:bottom;">
-                                    </div>
-
-
-                                    <div class="contract-date">
-                                       日期：
-                                    <input type="text" placeholder="年" style="width:50px; text-align:center; border:none; border-bottom:1px solid #000; outline:none; background:transparent;">年
-                                    <input type="text" placeholder="月" style="width:35px; text-align:center; border:none; border-bottom:1px solid #000; outline:none; background:transparent;">月
-                                    <input type="text" placeholder="日" style="width:35px; text-align:center; border:none; border-bottom:1px solid #000; outline:none; background:transparent;">日
-                                    </div>
-
                                 </div>
 
-
                                 <!-- 乙方 -->
-
                                 <div class="sign-box">
-
-                                    <div class="sign-title">
-                                        乙方签字/盖章
-                                    </div>
-
-
-                                    <div class="seal-upload-area"
-                                         id="sealAreaB">
-
-
-                                        <div class="seal-wrapper"
-                                             id="sealWrapperB"
-                                             style="display:none;">
-
-                                            <img id="sealImageB"
-                                                 class="seal-image"
-                                                 src=""
-                                                 alt="乙方印章"
-                                                 draggable="false">
-
-
-                                            <div class="seal-resize-handle"
-                                                 id="sealResizeHandleB">
-                                            </div>
-
-
-                                            <button type="button"
-                                                    class="seal-delete-btn"
-                                                    onclick="removeSealB(event)">
-
-                                                ×
-
-                                            </button>
-
+                                    <div class="sign-title">乙方签字/盖章</div>
+                                    <div class="seal-upload-area" id="sealAreaB" style="border-bottom: none;">
+                                        <div class="seal-wrapper" id="sealWrapperB" style="display:none;">
+                                            <img id="sealImageB" class="seal-image" src="" alt="乙方印章" draggable="false">
+                                            <div class="seal-resize-handle" id="sealResizeHandleB"></div>
+                                            <button type="button" class="seal-delete-btn" onclick="removeSealB(event)">×</button>
                                         </div>
-
-
-                                        <label class="seal-upload-btn"
-                                               id="sealUploadBtnB">
-
+                                        <label class="seal-upload-btn" id="sealUploadBtnB">
                                             📷 上传印章
-
-                                            <input type="file"
-                                                   id="sealInputB"
-                                                   accept="image/png,image/jpeg,image/jpg,image/webp"
-                                                   hidden>
-
+                                            <input type="file" id="sealInputB" accept="image/png,image/jpeg,image/jpg,image/webp" hidden>
                                         </label>
+                                        <div class="seal-tip">上传后可自由拖动印章，并拖动右下角调整大小</div>
+                                    </div>
 
-
-                                        <div class="seal-tip" style="border-bottom: none !important; text-decoration: none !important; border: none !important;">
-
-                                            上传后可自由拖动印章，并拖动右下角调整大小
-
+                                    <div style="width: 290px; margin-top: 8px;">
+                                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px;">
+                                            <span style="width: 4em; text-align-last: justify; display: inline-block;">签字：</span>
+                                            <span contenteditable="true" style="border-bottom:1px solid #000; outline:none; width: 225px; display:inline-block; min-height:22px; padding: 0 4px; word-break: break-all;">邦翰斯（香港）有限公司</span>
                                         </div>
-
+                                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                                            <span style="width: 4em; text-align-last: justify; display: inline-block;">日期：</span>
+                                            <div style="width: 225px; text-align: left; white-space: nowrap;">
+                                                <span contenteditable="true" style="width:42px; display:inline-block; text-align:center; border-bottom:1px solid #000; outline:none; min-height:20px;">2026</span>年
+                                                <span contenteditable="true" style="width:30px; display:inline-block; text-align:center; border-bottom:1px solid #000; outline:none; min-height:20px;">6</span>月
+                                                <span contenteditable="true" style="width:30px; display:inline-block; text-align:center; border-bottom:1px solid #000; outline:none; min-height:20px;">16</span>日
+                                            </div>
+                                        </div>
                                     </div>
-
-
-                                    <div class="sign-line">
-                                       签字：<input type="text" style="border:none; border-bottom:1px solid #000; outline:none; width:200px; background:transparent;">
-                                    </div>
-
-
-                                    <div class="contract-date">
-                                       日期：
-                                    <input type="text" placeholder="年" style="width:50px; text-align:center; border:none; border-bottom:1px solid #000; outline:none; background:transparent;">年
-                                    <input type="text" placeholder="月" style="width:35px; text-align:center; border:none; border-bottom:1px solid #000; outline:none; background:transparent;">月
-                                    <input type="text" placeholder="日" style="width:35px; text-align:center; border:none; border-bottom:1px solid #000; outline:none; background:transparent;">日
-                                    </div>
-
                                 </div>
 
                             </div>
 
                         </div>
-
                     </div>
-
                 </div>
-
             </div>
 
-
             <!-- 搜索结果 -->
-
-            <div id="memberSearchResult"
-                 class="search-result">
-
-                <div class="search-result-title">
-                    会员搜索结果
-                </div>
-
-
+            <div id="memberSearchResult" class="search-result">
+                <div class="search-result-title">会员搜索结果</div>
                 <div class="search-result-body">
-
                     <div class="result-row">
-
-                        <div class="result-label">
-                            会员姓名
-                        </div>
-
-                        <div class="result-value"
-                             id="resultName">
-                            -
-                        </div>
-
+                        <div class="result-label">会员姓名</div>
+                        <div class="result-value" id="resultName">-</div>
                     </div>
-
-
                     <div class="result-row">
-
-                        <div class="result-label">
-                            会员编号
-                        </div>
-
-                        <div class="result-value"
-                             id="resultId">
-                            -
-                        </div>
-
+                        <div class="result-label">会员编号</div>
+                        <div class="result-value" id="resultId">-</div>
                     </div>
-
-
                     <div class="result-row">
-
-                        <div class="result-label">
-                            手机号码
-                        </div>
-
-                        <div class="result-value"
-                             id="resultPhone">
-                            -
-                        </div>
-
+                        <div class="result-label">手机号码</div>
+                        <div class="result-value" id="resultPhone">-</div>
                     </div>
-
-
                     <div class="result-row">
-
-                        <div class="result-label">
-                            当前状态
-                        </div>
-
-                        <div class="result-value">
-
-                            <span class="status">
-                                正常
-                            </span>
-
-                        </div>
-
+                        <div class="result-label">当前状态</div>
+                        <div class="result-value"><span class="status">正常</span></div>
                     </div>
-
                 </div>
-
             </div>
 
         </section>
-
     </main>
-
 </div>
-
 
 <!-- 修改登录人弹窗 -->
-
-<div class="modal"
-     id="nameModal">
-
+<div class="modal" id="nameModal">
     <div class="modal-box">
-
-        <div class="modal-header">
-            修改登录人姓名
-        </div>
-
-
+        <div class="modal-header">修改登录人姓名</div>
         <div class="modal-body">
-
-            <label class="form-label">
-                登录人姓名
-            </label>
-
-            <input type="text"
-                   class="form-control"
-                   id="newLoginName"
-                   placeholder="请输入登录人姓名">
-
+            <label class="form-label">登录人姓名</label>
+            <input type="text" class="form-control" id="newLoginName" placeholder="请输入登录人姓名">
         </div>
-
-
         <div class="modal-footer">
-
-            <button class="cancel-btn"
-                    onclick="closeNameModal()">
-
-                取消
-
-            </button>
-
-
-            <button class="btn"
-                    onclick="saveLoginName()">
-
-                确定
-
-            </button>
-
+            <button class="cancel-btn" onclick="closeNameModal()">取消</button>
+            <button class="btn" onclick="saveLoginName()">确定</button>
         </div>
-
     </div>
-
 </div>
 
-
 <script>
-
-
-    /* =====================================================
-       页面切换
-    ===================================================== */
-
     function showPage(pageId, element) {
-
-        const pages =
-            document.querySelectorAll(".page");
-
-
-        pages.forEach(function(page) {
-
-            page.style.display = "none";
-
-        });
-
-
-        const target =
-            document.getElementById(pageId);
-
-
-        if (target) {
-
-            target.style.display = "block";
-
-        }
-
-
-        const menus =
-            document.querySelectorAll(".menu-item");
-
-
-        menus.forEach(function(menu) {
-
-            menu.classList.remove("active");
-
-        });
-
-
+        const pages = document.querySelectorAll(".page");
+        pages.forEach(page => page.style.display = "none");
+        const target = document.getElementById(pageId);
+        if (target) target.style.display = "block";
+        const menus = document.querySelectorAll(".menu-item");
+        menus.forEach(menu => menu.classList.remove("active"));
         element.classList.add("active");
-
     }
-
-
-    /* =====================================================
-       时间
-    ===================================================== */
 
     function updateTime() {
-
-        const now =
-            new Date();
-
-
-        const year =
-            now.getFullYear();
-
-
-        const month =
-            String(
-                now.getMonth() + 1
-            ).padStart(2, "0");
-
-
-        const day =
-            String(
-                now.getDate()
-            ).padStart(2, "0");
-
-
-        const weekList =
-            ["日", "一", "二", "三", "四", "五", "六"];
-
-
-        const week =
-            weekList[now.getDay()];
-
-
-        const hour =
-            String(
-                now.getHours()
-            ).padStart(2, "0");
-
-
-        const minute =
-            String(
-                now.getMinutes()
-            ).padStart(2, "0");
-
-
-        const second =
-            String(
-                now.getSeconds()
-            ).padStart(2, "0");
-
-
-        document.getElementById(
-            "currentTime"
-        ).innerText =
-            `${year}/${month}/${day} 周${week} - ${hour}:${minute}:${second}`;
-
+        const now = new Date();
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0");
+        const day = String(now.getDate()).padStart(2, "0");
+        const weekList = ["日", "一", "二", "三", "四", "五", "六"];
+        const week = weekList[now.getDay()];
+        const hour = String(now.getHours()).padStart(2, "0");
+        const minute = String(now.getMinutes()).padStart(2, "0");
+        const second = String(now.getSeconds()).padStart(2, "0");
+        document.getElementById("currentTime").innerText = `${year}/${month}/${day} 周${week} - ${hour}:${minute}:${second}`;
     }
-
-
     updateTime();
-
-    setInterval(
-        updateTime,
-        1000
-    );
-
-
-    /* =====================================================
-       登录人
-    ===================================================== */
+    setInterval(updateTime, 1000);
 
     function changeLoginName() {
-
-        const currentName =
-            document.getElementById(
-                "loginName"
-            ).innerText;
-
-
-        document.getElementById(
-            "newLoginName"
-        ).value =
-            currentName;
-
-
-        document.getElementById(
-            "nameModal"
-        ).style.display =
-            "flex";
-
-
-        setTimeout(function() {
-
-            document.getElementById(
-                "newLoginName"
-            ).focus();
-
-        }, 100);
-
+        const currentName = document.getElementById("loginName").innerText;
+        document.getElementById("newLoginName").value = currentName;
+        document.getElementById("nameModal").style.display = "flex";
+        setTimeout(() => document.getElementById("newLoginName").focus(), 100);
     }
-
 
     function closeNameModal() {
-
-        document.getElementById(
-            "nameModal"
-        ).style.display =
-            "none";
-
+        document.getElementById("nameModal").style.display = "none";
     }
-
 
     function saveLoginName() {
-
-        const newName =
-            document.getElementById(
-                "newLoginName"
-            ).value.trim();
-
-
+        const newName = document.getElementById("newLoginName").value.trim();
         if (newName === "") {
-
-            alert(
-                "登录人姓名不能为空！"
-            );
-
+            alert("登录人姓名不能为空！");
             return;
-
         }
-
-
-        document.getElementById(
-            "loginName"
-        ).innerText =
-            newName;
-
-
-        localStorage.setItem(
-            "loginUserName",
-            newName
-        );
-
-
+        document.getElementById("loginName").innerText = newName;
+        localStorage.setItem("loginUserName", newName);
         closeNameModal();
-
     }
-
 
     function loadLoginName() {
-
-        const savedName =
-            localStorage.getItem(
-                "loginUserName"
-            );
-
-
-        if (savedName) {
-
-            document.getElementById(
-                "loginName"
-            ).innerText =
-                savedName;
-
-        }
-
+        const savedName = localStorage.getItem("loginUserName");
+        if (savedName) document.getElementById("loginName").innerText = savedName;
     }
-
-
     loadLoginName();
 
-
-    /* =====================================================
-       会员搜索
-    ===================================================== */
-
     function searchMember() {
-
-        const keyword =
-            document.getElementById(
-                "memberSearch"
-            ).value.trim();
-
-
+        const keyword = document.getElementById("memberSearch").value.trim();
         if (keyword === "") {
-
-            alert(
-                "请输入会员姓名、手机号或会员编号！"
-            );
-
+            alert("请输入会员姓名、手机号或会员编号！");
             return;
-
         }
-
-
-        let memberName =
-            "张三";
-
-
-        let memberId =
-            "HY20260001";
-
-
-        let memberPhone =
-            "138****8888";
-
-
+        let memberName = "张三";
+        let memberId = "HY20260001";
+        let memberPhone = "138****8888";
         if (keyword !== "张三") {
-
-            memberName =
-                keyword;
-
-
-            memberId =
-                "HY" +
-                new Date().getFullYear() +
-                "0001";
-
-
-            memberPhone =
-                "138****8888";
-
+            memberName = keyword;
+            memberId = "HY" + new Date().getFullYear() + "0001";
+            memberPhone = "138****8888";
         }
-
-
-        document.getElementById(
-            "resultName"
-        ).innerText =
-            memberName;
-
-
-        document.getElementById(
-            "resultId"
-        ).innerText =
-            memberId;
-
-
-        document.getElementById(
-            "resultPhone"
-        ).innerText =
-            memberPhone;
-
-
-        document.getElementById(
-            "memberSearchResult"
-        ).style.display =
-            "block";
-
+        document.getElementById("resultName").innerText = memberName;
+        document.getElementById("resultId").innerText = memberId;
+        document.getElementById("resultPhone").innerText = memberPhone;
+        document.getElementById("memberSearchResult").style.display = "block";
     }
-
 
     function memberSearchEnter(event) {
-
-        if (event.key === "Enter") {
-
-            searchMember();
-
-        }
-
+        if (event.key === "Enter") searchMember();
     }
-
-
-    /* =====================================================
-       普通提交
-    ===================================================== */
 
     function submitForm() {
-
-        alert(
-            "信息提交成功！"
-        );
-
+        alert("信息提交成功！");
     }
-
-
-    /* =====================================================
-       弹窗
-    ===================================================== */
-
-    document.getElementById(
-        "nameModal"
-    ).addEventListener(
-        "click",
-        function(event) {
-
-            if (event.target === this) {
-
-                closeNameModal();
-
-            }
-
-        }
-    );
-
-
-    document.getElementById(
-        "newLoginName"
-    ).addEventListener(
-        "keydown",
-        function(event) {
-
-            if (event.key === "Enter") {
-
-                saveLoginName();
-
-            }
-
-
-            if (event.key === "Escape") {
-
-                closeNameModal();
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       合同：保存
-    ===================================================== */
 
     function saveContract() {
-
-        const paper =
-            document.getElementById(
-                "contractPaper"
-            );
-
-
-        localStorage.setItem(
-            "sellerContractContentV2",
-            paper.innerHTML
-        );
-
-
+        const paper = document.getElementById("contractPaper");
+        localStorage.setItem("sellerContractContentV3", paper.innerHTML);
         saveSealData("A");
-
         saveSealData("B");
-
-
-        alert(
-            "合同内容已保存！"
-        );
-
+        alert("合同内容已保存！");
     }
-
-
-    /* =====================================================
-       合同：读取
-    ===================================================== */
 
     function loadContract() {
-
-        const saved =
-            localStorage.getItem(
-                "sellerContractContentV2"
-            );
-
-
-        if (saved) {
-
-            document.getElementById(
-                "contractPaper"
-            ).innerHTML =
-                saved;
-
-        }
-
+        const saved = localStorage.getItem("sellerContractContentV3");
+        if (saved) document.getElementById("contractPaper").innerHTML = saved;
     }
 
-
-    /* =====================================================
-       印章：图片读取
-    ===================================================== */
-
-    function readImageFile(
-        file,
-        type
-    ) {
-
-        if (!file) {
-
-            return;
-
-        }
-
-
-        const allowedTypes = [
-
-            "image/png",
-            "image/jpeg",
-            "image/jpg",
-            "image/webp"
-
-        ];
-
-
+    function readImageFile(file, type) {
+        if (!file) return;
+        const allowedTypes = ["image/png", "image/jpeg", "image/jpg", "image/webp"];
         if (!allowedTypes.includes(file.type)) {
-
-            alert(
-                "请选择 PNG、JPG、JPEG 或 WEBP 格式的印章图片！"
-            );
-
+            alert("请选择 PNG、JPG、JPEG 或 WEBP 格式的印章图片！");
             return;
-
         }
-
-
-        const maxSize =
-            10 * 1024 * 1024;
-
-
-        if (file.size > maxSize) {
-
-            alert(
-                "印章图片不能超过10MB！"
-            );
-
-            return;
-
-        }
-
-
-        const reader =
-            new FileReader();
-
-
-        reader.onload =
-            function(e) {
-
-                const dataUrl =
-                    e.target.result;
-
-
-                if (type === "A") {
-
-                    showSeal(
-                        "sealArea",
-                        "sealWrapper",
-                        "sealImage",
-                        dataUrl
-                    );
-
-
-                    localStorage.setItem(
-                        "sellerSealImageA",
-                        dataUrl
-                    );
-
-                } else {
-
-                    showSeal(
-                        "sealAreaB",
-                        "sealWrapperB",
-                        "sealImageB",
-                        dataUrl
-                    );
-
-
-                    localStorage.setItem(
-                        "sellerSealImageB",
-                        dataUrl
-                    );
-
-                }
-
-            };
-
-
-        reader.onerror =
-            function() {
-
-                alert(
-                    "印章图片读取失败，请重新选择图片。"
-                );
-
-            };
-
-
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const dataUrl = e.target.result;
+            if (type === "A") {
+                showSeal("sealArea", "sealWrapper", "sealImage", dataUrl);
+                localStorage.setItem("sellerSealImageA", dataUrl);
+            } else {
+                showSeal("sealAreaB", "sealWrapperB", "sealImageB", dataUrl);
+                localStorage.setItem("sellerSealImageB", dataUrl);
+            }
+        };
         reader.readAsDataURL(file);
-
     }
-
-
-    /* =====================================================
-       甲方上传印章
-    ===================================================== */
 
     function uploadSeal(event) {
-
-        const input =
-            event.target;
-
-
-        if (
-            !input.files ||
-            input.files.length === 0
-        ) {
-
-            return;
-
-        }
-
-
-        readImageFile(
-            input.files[0],
-            "A"
-        );
-
-
+        const input = event.target;
+        if (!input.files || input.files.length === 0) return;
+        readImageFile(input.files[0], "A");
         input.value = "";
-
     }
-
-
-    /* =====================================================
-       乙方上传印章
-    ===================================================== */
 
     function uploadSealB(event) {
-
-        const input =
-            event.target;
-
-
-        if (
-            !input.files ||
-            input.files.length === 0
-        ) {
-
-            return;
-
-        }
-
-
-        readImageFile(
-            input.files[0],
-            "B"
-        );
-
-
+        const input = event.target;
+        if (!input.files || input.files.length === 0) return;
+        readImageFile(input.files[0], "B");
         input.value = "";
-
     }
 
-
-    /* =====================================================
-       将印章移动到整个A4合同页面
-    ===================================================== */
-
-    function attachSealToPaper(
-        wrapper,
-        area
-    ) {
-
-        const paper =
-            document.getElementById(
-                "contractPaper"
-            );
-
-
-        if (
-            !paper ||
-            !wrapper
-        ) {
-
+    function attachSealToPaper(wrapper, area) {
+        const paper = document.getElementById("contractPaper");
+        if (!paper || !wrapper) return;
+        if (wrapper.parentElement === paper) {
+            wrapper.style.position = "absolute";
+            wrapper.style.transform = "none";
+            wrapper.style.zIndex = "99999";
             return;
-
         }
-
-
-        /*
-         * 如果已经在合同页面中，
-         * 不重复移动
-         */
-        if (
-            wrapper.parentElement === paper
-        ) {
-
-            wrapper.style.position =
-                "absolute";
-
-
-            wrapper.style.transform =
-                "none";
-
-
-            wrapper.style.zIndex =
-                "99999";
-
-
-            return;
-
-        }
-
-
-        /*
-         * 显示印章
-         */
-        wrapper.style.display =
-            "block";
-
-
-        /*
-         * 获取移动之前的屏幕位置
-         */
-        const oldRect =
-            wrapper.getBoundingClientRect();
-
-
-        const paperRect =
-            paper.getBoundingClientRect();
-
-
-        /*
-         * 从原来的签章区域
-         * 移动到整个合同
-         */
-        paper.appendChild(
-            wrapper
-        );
-
-
-        wrapper.style.position =
-            "absolute";
-
-
-        wrapper.style.transform =
-            "none";
-
-
-        /*
-         * 转换成合同内部坐标
-         */
-        let left =
-            oldRect.left -
-            paperRect.left;
-
-
-        let top =
-            oldRect.top -
-            paperRect.top;
-
-
-        /*
-         * 限制在A4页面范围
-         */
-        const maxLeft =
-            Math.max(
-                0,
-                paper.clientWidth -
-                wrapper.offsetWidth
-            );
-
-
-        const maxTop =
-            Math.max(
-                0,
-                paper.clientHeight -
-                wrapper.offsetHeight
-            );
-
-
-        left =
-            Math.max(
-                0,
-                Math.min(
-                    left,
-                    maxLeft
-                )
-            );
-
-
-        top =
-            Math.max(
-                0,
-                Math.min(
-                    top,
-                    maxTop
-                )
-            );
-
-
-        wrapper.style.left =
-            left + "px";
-
-
-        wrapper.style.top =
-            top + "px";
-
-
-        wrapper.style.zIndex =
-            "99999";
-
+        wrapper.style.display = "block";
+        const oldRect = wrapper.getBoundingClientRect();
+        const paperRect = paper.getBoundingClientRect();
+        paper.appendChild(wrapper);
+        wrapper.style.position = "absolute";
+        wrapper.style.transform = "none";
+        let left = oldRect.left - paperRect.left;
+        let top = oldRect.top - paperRect.top;
+        wrapper.style.left = Math.max(0, Math.min(left, paper.clientWidth - wrapper.offsetWidth)) + "px";
+        wrapper.style.top = Math.max(0, Math.min(top, paper.clientHeight - wrapper.offsetHeight)) + "px";
+        wrapper.style.zIndex = "99999";
     }
 
-
-    /* =====================================================
-       显示印章
-    ===================================================== */
-
-    function showSeal(
-        areaId,
-        wrapperId,
-        imageId,
-        dataUrl
-    ) {
-
-        const area =
-            document.getElementById(
-                areaId
-            );
-
-
-        const wrapper =
-            document.getElementById(
-                wrapperId
-            );
-
-
-        const image =
-            document.getElementById(
-                imageId
-            );
-
-
-        const paper =
-            document.getElementById(
-                "contractPaper"
-            );
-
-
-        if (
-            !area ||
-            !wrapper ||
-            !image ||
-            !paper
-        ) {
-
-            return;
-
+    function showSeal(areaId, wrapperId, imageId, dataUrl) {
+        const area = document.getElementById(areaId);
+        const wrapper = document.getElementById(wrapperId);
+        const image = document.getElementById(imageId);
+        const paper = document.getElementById("contractPaper");
+        if (!area || !wrapper || !image || !paper) return;
+        image.src = dataUrl;
+        wrapper.style.display = "block";
+        area.classList.add("has-seal");
+        if (!wrapper.dataset.initialized) {
+            wrapper.style.width = "90px";
+            wrapper.style.height = "90px";
+            wrapper.style.left = "20px";
+            wrapper.style.top = "20px";
+            wrapper.style.transform = "none";
+            wrapper.dataset.initialized = "1";
         }
-
-
-        /*
-         * 设置图片
-         */
-        image.src =
-            dataUrl;
-
-
-        /*
-         * 显示印章
-         */
-        wrapper.style.display =
-            "block";
-
-
-        area.classList.add(
-            "has-seal"
-        );
-
-
-        /*
-         * 第一次上传使用默认大小
-         */
-        if (
-            !wrapper.dataset.initialized
-        ) {
-
-            wrapper.style.width =
-                "90px";
-
-
-            wrapper.style.height =
-                "90px";
-
-
-            wrapper.style.left =
-                "20px";
-
-
-            wrapper.style.top =
-                "20px";
-
-
-            wrapper.style.transform =
-                "none";
-
-
-            wrapper.dataset.initialized =
-                "1";
-
-        }
-
-
-        /*
-         * 把印章放到整个合同页面
-         */
-        attachSealToPaper(
-            wrapper,
-            area
-        );
-
-
-        /*
-         * 初始化拖动
-         */
-        initSealDragAndResize(
-            paper,
-            wrapper
-        );
-
-
-        /*
-         * 确保位于文字上方
-         */
-        wrapper.style.zIndex =
-            "99999";
-
+        attachSealToPaper(wrapper, area);
+        initSealDragAndResize(paper, wrapper);
+        wrapper.style.zIndex = "99999";
     }
 
+    function initSealDragAndResize(paper, wrapper) {
+        if (!paper || !wrapper || wrapper.dataset.eventsReady === "1") return;
+        wrapper.dataset.eventsReady = "1";
+        let mode = null, startX = 0, startY = 0, startLeft = 0, startTop = 0, startSize = 0, activePointerId = null;
+        const resizeHandle = wrapper.querySelector(".seal-resize-handle");
+        const deleteButton = wrapper.querySelector(".seal-delete-btn");
+
+        wrapper.addEventListener("pointerdown", function(event) {
+            if (resizeHandle && (event.target === resizeHandle || resizeHandle.contains(event.target))) return;
+            if (deleteButton && (event.target === deleteButton || deleteButton.contains(event.target))) return;
+            event.preventDefault();
+            event.stopPropagation();
+            mode = "drag";
+            activePointerId = event.pointerId;
+            startX = event.clientX;
+            startY = event.clientY;
+            startLeft = wrapper.offsetLeft;
+            startTop = wrapper.offsetTop;
+            wrapper.style.zIndex = "99999";
+            try { wrapper.setPointerCapture(event.pointerId); } catch (e) {}
+        });
+
+        wrapper.addEventListener("pointermove", function(event) {
+            if (mode !== "drag" || event.pointerId !== activePointerId) return;
+            event.preventDefault();
+            const dx = event.clientX - startX;
+            const dy = event.clientY - startY;
+            const maxLeft = Math.max(0, paper.clientWidth - wrapper.offsetWidth);
+            const maxTop = Math.max(0, paper.clientHeight - wrapper.offsetHeight);
+            wrapper.style.left = Math.max(0, Math.min(startLeft + dx, maxLeft)) + "px";
+            wrapper.style.top = Math.max(0, Math.min(startTop + dy, maxTop)) + "px";
+            wrapper.style.zIndex = "99999";
+        });
 
-    /* =====================================================
-       印章自由拖动 + 缩放
-       拖动范围 = 整个A4合同页面
-    ===================================================== */
-
-    function initSealDragAndResize(
-        paper,
-        wrapper
-    ) {
-
-        if (
-            !paper ||
-            !wrapper
-        ) {
-
-            return;
-
-        }
-
-
-        /*
-         * 防止重复绑定
-         */
-        if (
-            wrapper.dataset.eventsReady === "1"
-        ) {
-
-            return;
-
-        }
-
-
-        wrapper.dataset.eventsReady =
-            "1";
-
-
-        let mode =
-            null;
-
-
-        let startX =
-            0;
-
-
-        let startY =
-            0;
-
-
-        let startLeft =
-            0;
-
-
-        let startTop =
-            0;
-
-
-        let startSize =
-            0;
-
-
-        let activePointerId =
-            null;
-
-
-        const resizeHandle =
-            wrapper.querySelector(
-                ".seal-resize-handle"
-            );
-
-
-        const deleteButton =
-            wrapper.querySelector(
-                ".seal-delete-btn"
-            );
-
-
-        /*
-         * 获取当前位置
-         */
-        function getCurrentPosition() {
-
-            return {
-
-                left:
-                    wrapper.offsetLeft,
-
-                top:
-                    wrapper.offsetTop
-
-            };
-
-        }
-
-
-        /*
-         * 限制在整个A4页面内
-         */
-        function limitPosition(
-            left,
-            top
-        ) {
-
-            const maxLeft =
-                Math.max(
-                    0,
-                    paper.clientWidth -
-                    wrapper.offsetWidth
-                );
-
-
-            const maxTop =
-                Math.max(
-                    0,
-                    paper.clientHeight -
-                    wrapper.offsetHeight
-                );
-
-
-            return {
-
-                left:
-                    Math.max(
-                        0,
-                        Math.min(
-                            left,
-                            maxLeft
-                        )
-                    ),
-
-
-                top:
-                    Math.max(
-                        0,
-                        Math.min(
-                            top,
-                            maxTop
-                        )
-                    )
-
-            };
-
-        }
-
-
-        /*
-         * 开始拖动
-         */
-        wrapper.addEventListener(
-            "pointerdown",
-            function(event) {
-
-                /*
-                 * 缩放按钮不触发拖动
-                 */
-                if (
-                    resizeHandle &&
-                    (
-                        event.target === resizeHandle ||
-                        resizeHandle.contains(
-                            event.target
-                        )
-                    )
-                ) {
-
-                    return;
-
-                }
-
-
-                /*
-                 * 删除按钮不触发拖动
-                 */
-                if (
-                    deleteButton &&
-                    (
-                        event.target === deleteButton ||
-                        deleteButton.contains(
-                            event.target
-                        )
-                    )
-                ) {
-
-                    return;
-
-                }
-
-
-                event.preventDefault();
-
-                event.stopPropagation();
-
-
-                mode =
-                    "drag";
-
-
-                activePointerId =
-                    event.pointerId;
-
-
-                startX =
-                    event.clientX;
-
-
-                startY =
-                    event.clientY;
-
-
-                const position =
-                    getCurrentPosition();
-
-
-                startLeft =
-                    position.left;
-
-
-                startTop =
-                    position.top;
-
-
-                wrapper.style.transform =
-                    "none";
-
-
-                wrapper.style.zIndex =
-                    "99999";
-
-
-                try {
-
-                    wrapper.setPointerCapture(
-                        event.pointerId
-                    );
-
-                } catch (error) {}
-
-            }
-        );
-
-
-        /*
-         * 拖动过程中
-         */
-        wrapper.addEventListener(
-            "pointermove",
-            function(event) {
-
-                if (
-                    mode !== "drag" ||
-                    event.pointerId !== activePointerId
-                ) {
-
-                    return;
-
-                }
-
-
-                event.preventDefault();
-
-
-                const dx =
-                    event.clientX -
-                    startX;
-
-
-                const dy =
-                    event.clientY -
-                    startY;
-
-
-                const position =
-                    limitPosition(
-                        startLeft + dx,
-                        startTop + dy
-                    );
-
-
-                wrapper.style.left =
-                    position.left +
-                    "px";
-
-
-                wrapper.style.top =
-                    position.top +
-                    "px";
-
-
-                /*
-                 * 保证印章始终在文字上面
-                 */
-                wrapper.style.zIndex =
-                    "99999";
-
-            }
-        );
-
-
-        /*
-         * 停止拖动
-         */
         function stopDrag(event) {
-
-            if (
-                mode !== "drag"
-            ) {
-
-                return;
-
-            }
-
-
-            if (
-                event &&
-                event.pointerId !== undefined &&
-                event.pointerId !== activePointerId
-            ) {
-
-                return;
-
-            }
-
-
-            mode =
-                null;
-
-
-            activePointerId =
-                null;
-
-
-            wrapper.style.transform =
-                "none";
-
-
-            wrapper.style.zIndex =
-                "99999";
-
-
-            /*
-             * 保存整个合同中的位置
-             */
-            saveSealPosition(
-                wrapper
-            );
-
+            if (mode !== "drag") return;
+            if (event && event.pointerId !== undefined && event.pointerId !== activePointerId) return;
+            mode = null;
+            activePointerId = null;
+            wrapper.style.zIndex = "99999";
+            saveSealPosition(wrapper);
         }
 
+        wrapper.addEventListener("pointerup", stopDrag);
+        wrapper.addEventListener("pointercancel", stopDrag);
 
-        wrapper.addEventListener(
-            "pointerup",
-            stopDrag
-        );
+        document.addEventListener("pointerup", function(event) {
+            if (mode === "drag" && event.pointerId === activePointerId) stopDrag(event);
+            if (mode === "resize" && event.pointerId === activePointerId) stopResize(event);
+        });
 
-
-        wrapper.addEventListener(
-            "pointercancel",
-            stopDrag
-        );
-
-
-        /*
-         * 防止拖出页面后卡住
-         */
-        document.addEventListener(
-            "pointerup",
-            function(event) {
-
-                if (
-                    mode === "drag" &&
-                    event.pointerId === activePointerId
-                ) {
-
-                    stopDrag(event);
-
-                }
-
-
-                if (
-                    mode === "resize" &&
-                    event.pointerId === activePointerId
-                ) {
-
-                    stopResize(event);
-
-                }
-
-            }
-        );
-
-
-        /*
-         * =================================================
-         * 缩放
-         * =================================================
-         */
         if (resizeHandle) {
+            resizeHandle.addEventListener("pointerdown", function(event) {
+                event.preventDefault();
+                event.stopPropagation();
+                mode = "resize";
+                activePointerId = event.pointerId;
+                startX = event.clientX;
+                startY = event.clientY;
+                startSize = wrapper.offsetWidth;
+                wrapper.style.zIndex = "99999";
+                try { resizeHandle.setPointerCapture(event.pointerId); } catch (e) {}
+            });
 
-            resizeHandle.addEventListener(
-                "pointerdown",
-                function(event) {
-
-                    event.preventDefault();
-
-                    event.stopPropagation();
-
-
-                    mode =
-                        "resize";
-
-
-                    activePointerId =
-                        event.pointerId;
-
-
-                    startX =
-                        event.clientX;
-
-
-                    startY =
-                        event.clientY;
-
-
-                    startSize =
-                        wrapper.offsetWidth;
-
-
-                    wrapper.style.transform =
-                        "none";
-
-
-                    wrapper.style.zIndex =
-                        "99999";
-
-
-                    try {
-
-                        resizeHandle.setPointerCapture(
-                            event.pointerId
-                        );
-
-                    } catch (error) {}
-
-                }
-            );
-
-
-            resizeHandle.addEventListener(
-                "pointermove",
-                function(event) {
-
-                    if (
-                        mode !== "resize" ||
-                        event.pointerId !== activePointerId
-                    ) {
-
-                        return;
-
-                    }
-
-
-                    event.preventDefault();
-
-
-                    const dx =
-                        event.clientX -
-                        startX;
-
-
-                    const dy =
-                        event.clientY -
-                        startY;
-
-
-                    /*
-                     * 保持正方形
-                     */
-                    const change =
-                        Math.max(
-                            dx,
-                            dy
-                        );
-
-
-                    let newSize =
-                        startSize +
-                        change;
-
-
-                    /*
-                     * 最小35px
-                     * 最大180px
-                     */
-                    newSize =
-                        Math.max(
-                            35,
-                            Math.min(
-                                newSize,
-                                180
-                            )
-                        );
-
-
-                    /*
-                     * 不允许超过A4页面
-                     */
-                    newSize =
-                        Math.min(
-                            newSize,
-                            paper.clientWidth,
-                            paper.clientHeight
-                        );
-
-
-                    wrapper.style.width =
-                        newSize +
-                        "px";
-
-
-                    wrapper.style.height =
-                        newSize +
-                        "px";
-
-
-                    /*
-                     * 缩放后重新限制位置
-                     */
-                    const position =
-                        limitPosition(
-                            wrapper.offsetLeft,
-                            wrapper.offsetTop
-                        );
-
-
-                    wrapper.style.left =
-                        position.left +
-                        "px";
-
-
-                    wrapper.style.top =
-                        position.top +
-                        "px";
-
-
-                    wrapper.style.zIndex =
-                        "99999";
-
-                }
-            );
-
+            resizeHandle.addEventListener("pointermove", function(event) {
+                if (mode !== "resize" || event.pointerId !== activePointerId) return;
+                event.preventDefault();
+                const dx = event.clientX - startX;
+                const dy = event.clientY - startY;
+                let newSize = Math.max(35, Math.min(startSize + Math.max(dx, dy), 180));
+                wrapper.style.width = newSize + "px";
+                wrapper.style.height = newSize + "px";
+                wrapper.style.zIndex = "99999";
+            });
 
             function stopResize(event) {
-
-                if (
-                    mode !== "resize"
-                ) {
-
-                    return;
-
-                }
-
-
-                if (
-                    event &&
-                    event.pointerId !== undefined &&
-                    event.pointerId !== activePointerId
-                ) {
-
-                    return;
-
-                }
-
-
-                mode =
-                    null;
-
-
-                activePointerId =
-                    null;
-
-
-                wrapper.style.transform =
-                    "none";
-
-
-                wrapper.style.zIndex =
-                    "99999";
-
-
-                saveSealPosition(
-                    wrapper
-                );
-
+                if (mode !== "resize") return;
+                if (event && event.pointerId !== undefined && event.pointerId !== activePointerId) return;
+                mode = null;
+                activePointerId = null;
+                wrapper.style.zIndex = "99999";
+                saveSealPosition(wrapper);
             }
-
-
-            resizeHandle.addEventListener(
-                "pointerup",
-                stopResize
-            );
-
-
-            resizeHandle.addEventListener(
-                "pointercancel",
-                stopResize
-            );
-
+            resizeHandle.addEventListener("pointerup", stopResize);
+            resizeHandle.addEventListener("pointercancel", stopResize);
         }
-
     }
 
-
-    /* =====================================================
-       保存印章位置和大小
-    ===================================================== */
-
-    function saveSealPosition(
-        wrapper
-    ) {
-
-        if (!wrapper) {
-
-            return;
-
-        }
-
-
-        let type =
-            "";
-
-
-        if (
-            wrapper.id === "sealWrapper"
-        ) {
-
-            type =
-                "A";
-
-        }
-
-
-        if (
-            wrapper.id === "sealWrapperB"
-        ) {
-
-            type =
-                "B";
-
-        }
-
-
-        if (!type) {
-
-            return;
-
-        }
-
-
+    function saveSealPosition(wrapper) {
+        if (!wrapper) return;
+        let type = wrapper.id === "sealWrapper" ? "A" : (wrapper.id === "sealWrapperB" ? "B" : "");
+        if (!type) return;
         const data = {
-
-            left:
-                wrapper.style.left,
-
-            top:
-                wrapper.style.top,
-
-            width:
-                wrapper.style.width,
-
-            height:
-                wrapper.style.height,
-
-            transform:
-                "none"
-
+            left: wrapper.style.left,
+            top: wrapper.style.top,
+            width: wrapper.style.width,
+            height: wrapper.style.height,
+            transform: "none"
         };
-
-
-        localStorage.setItem(
-            "sellerSealPosition" + type,
-            JSON.stringify(data)
-        );
-
+        localStorage.setItem("sellerSealPosition" + type, JSON.stringify(data));
     }
 
-
-    /* =====================================================
-       保存印章图片
-    ===================================================== */
-
-    function saveSealData(
-        type
-    ) {
-
-        const imageId =
-            type === "A"
-                ? "sealImage"
-                : "sealImageB";
-
-
-        const image =
-            document.getElementById(
-                imageId
-            );
-
-
-        if (
-            image &&
-            image.src &&
-            image.src.startsWith(
-                "data:image"
-            )
-        ) {
-
-            localStorage.setItem(
-                "sellerSealImage" + type,
-                image.src
-            );
-
+    function saveSealData(type) {
+        const image = document.getElementById(type === "A" ? "sealImage" : "sealImageB");
+        if (image && image.src && image.src.startsWith("data:image")) {
+            localStorage.setItem("sellerSealImage" + type, image.src);
         }
-
-
-        const wrapperId =
-            type === "A"
-                ? "sealWrapper"
-                : "sealWrapperB";
-
-
-        const wrapper =
-            document.getElementById(
-                wrapperId
-            );
-
-
-        if (wrapper) {
-
-            saveSealPosition(
-                wrapper
-            );
-
-        }
-
+        const wrapper = document.getElementById(type === "A" ? "sealWrapper" : "sealWrapperB");
+        if (wrapper) saveSealPosition(wrapper);
     }
 
-
-    /* =====================================================
-       恢复印章
-    ===================================================== */
-
-    function restoreSeal(
-        type
-    ) {
-
-        const imageKey =
-            "sellerSealImage" +
-            type;
-
-
-        const positionKey =
-            "sellerSealPosition" +
-            type;
-
-
-        const dataUrl =
-            localStorage.getItem(
-                imageKey
-            );
-
-
-        if (!dataUrl) {
-
-            return;
-
-        }
-
-
-        const areaId =
-            type === "A"
-                ? "sealArea"
-                : "sealAreaB";
-
-
-        const wrapperId =
-            type === "A"
-                ? "sealWrapper"
-                : "sealWrapperB";
-
-
-        const imageId =
-            type === "A"
-                ? "sealImage"
-                : "sealImageB";
-
-
-        const paper =
-            document.getElementById(
-                "contractPaper"
-            );
-
-
-        const area =
-            document.getElementById(
-                areaId
-            );
-
-
-        const wrapper =
-            document.getElementById(
-                wrapperId
-            );
-
-
-        if (
-            !paper ||
-            !area ||
-            !wrapper
-        ) {
-
-            return;
-
-        }
-
-
-        /*
-         * 恢复图片
-         */
-        showSeal(
-            areaId,
-            wrapperId,
-            imageId,
-            dataUrl
-        );
-
-
-        /*
-         * 恢复位置
-         */
-        const positionData =
-            localStorage.getItem(
-                positionKey
-            );
-
-
+    function restoreSeal(type) {
+        const dataUrl = localStorage.getItem("sellerSealImage" + type);
+        if (!dataUrl) return;
+        const areaId = type === "A" ? "sealArea" : "sealAreaB";
+        const wrapperId = type === "A" ? "sealWrapper" : "sealWrapperB";
+        const imageId = type === "A" ? "sealImage" : "sealImageB";
+        const paper = document.getElementById("contractPaper");
+        const area = document.getElementById(areaId);
+        const wrapper = document.getElementById(wrapperId);
+        if (!paper || !area || !wrapper) return;
+        showSeal(areaId, wrapperId, imageId, dataUrl);
+        const positionData = localStorage.getItem("sellerSealPosition" + type);
         if (positionData) {
-
             try {
-
-                const data =
-                    JSON.parse(
-                        positionData
-                    );
-
-
-                setTimeout(
-                    function() {
-
-                        /*
-                         * 确保印章位于整个合同页面
-                         */
-                        if (
-                            wrapper.parentElement !== paper
-                        ) {
-
-                            attachSealToPaper(
-                                wrapper,
-                                area
-                            );
-
-                        }
-
-
-                        /*
-                         * 恢复left
-                         */
-                        if (
-                            data.left !== undefined &&
-                            data.left !== ""
-                        ) {
-
-                            wrapper.style.left =
-                                data.left;
-
-                        }
-
-
-                        /*
-                         * 恢复top
-                         */
-                        if (
-                            data.top !== undefined &&
-                            data.top !== ""
-                        ) {
-
-                            wrapper.style.top =
-                                data.top;
-
-                        }
-
-
-                        /*
-                         * 恢复宽度
-                         */
-                        if (
-                            data.width !== undefined &&
-                            data.width !== ""
-                        ) {
-
-                            wrapper.style.width =
-                                data.width;
-
-                        }
-
-
-                        /*
-                         * 恢复高度
-                         */
-                        if (
-                            data.height !== undefined &&
-                            data.height !== ""
-                        ) {
-
-                            wrapper.style.height =
-                                data.height;
-
-                        }
-
-
-                        wrapper.style.transform =
-                            "none";
-
-
-                        wrapper.style.zIndex =
-                            "99999";
-
-
-                        wrapper.style.display =
-                            "block";
-
-
-                        wrapper.dataset.initialized =
-                            "1";
-
-
-                        /*
-                         * 检查是否超出合同页面
-                         */
-                        const maxLeft =
-                            Math.max(
-                                0,
-                                paper.clientWidth -
-                                wrapper.offsetWidth
-                            );
-
-
-                        const maxTop =
-                            Math.max(
-                                0,
-                                paper.clientHeight -
-                                wrapper.offsetHeight
-                            );
-
-
-                        const currentLeft =
-                            parseFloat(
-                                wrapper.style.left
-                            ) || 0;
-
-
-                        const currentTop =
-                            parseFloat(
-                                wrapper.style.top
-                            ) || 0;
-
-
-                        wrapper.style.left =
-                            Math.max(
-                                0,
-                                Math.min(
-                                    currentLeft,
-                                    maxLeft
-                                )
-                            ) + "px";
-
-
-                        wrapper.style.top =
-                            Math.max(
-                                0,
-                                Math.min(
-                                    currentTop,
-                                    maxTop
-                                )
-                            ) + "px";
-
-
-                    },
-                    80
-                );
-
-
-            } catch (error) {
-
-                console.error(
-                    "印章位置恢复失败",
-                    error
-                );
-
-            }
-
+                const data = JSON.parse(positionData);
+                setTimeout(() => {
+                    if (wrapper.parentElement !== paper) attachSealToPaper(wrapper, area);
+                    if (data.left) wrapper.style.left = data.left;
+                    if (data.top) wrapper.style.top = data.top;
+                    if (data.width) wrapper.style.width = data.width;
+                    if (data.height) wrapper.style.height = data.height;
+                    wrapper.style.display = "block";
+                    wrapper.dataset.initialized = "1";
+                }, 80);
+            } catch (e) {}
         }
-
     }
 
-
-    /* =====================================================
-       删除甲方印章
-    ===================================================== */
-
-    function removeSeal(
-        event
-    ) {
-
-        if (event) {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
-        }
-
-
-        const wrapper =
-            document.getElementById(
-                "sealWrapper"
-            );
-
-
-        const area =
-            document.getElementById(
-                "sealArea"
-            );
-
-
-        const image =
-            document.getElementById(
-                "sealImage"
-            );
-
-
-        if (wrapper) {
-
-            wrapper.style.display =
-                "none";
-
-        }
-
-
-        if (area) {
-
-            area.classList.remove(
-                "has-seal"
-            );
-
-        }
-
-
-        if (image) {
-
-            image.src =
-                "";
-
-        }
-
-
-        localStorage.removeItem(
-            "sellerSealImageA"
-        );
-
-
-        localStorage.removeItem(
-            "sellerSealPositionA"
-        );
-
+    function removeSeal(event) {
+        if (event) { event.preventDefault(); event.stopPropagation(); }
+        const wrapper = document.getElementById("sealWrapper");
+        const area = document.getElementById("sealArea");
+        const image = document.getElementById("sealImage");
+        if (wrapper) wrapper.style.display = "none";
+        if (area) area.classList.remove("has-seal");
+        if (image) image.src = "";
+        localStorage.removeItem("sellerSealImageA");
+        localStorage.removeItem("sellerSealPositionA");
     }
 
-
-    /* =====================================================
-       删除乙方印章
-    ===================================================== */
-
-    function removeSealB(
-        event
-    ) {
-
-        if (event) {
-
-            event.preventDefault();
-
-            event.stopPropagation();
-
-        }
-
-
-        const wrapper =
-            document.getElementById(
-                "sealWrapperB"
-            );
-
-
-        const area =
-            document.getElementById(
-                "sealAreaB"
-            );
-
-
-        const image =
-            document.getElementById(
-                "sealImageB"
-            );
-
-
-        if (wrapper) {
-
-            wrapper.style.display =
-                "none";
-
-        }
-
-
-        if (area) {
-
-            area.classList.remove(
-                "has-seal"
-            );
-
-        }
-
-
-        if (image) {
-
-            image.src =
-                "";
-
-        }
-
-
-        localStorage.removeItem(
-            "sellerSealImageB"
-        );
-
-
-        localStorage.removeItem(
-            "sellerSealPositionB"
-        );
-
+    function removeSealB(event) {
+        if (event) { event.preventDefault(); event.stopPropagation(); }
+        const wrapper = document.getElementById("sealWrapperB");
+        const area = document.getElementById("sealAreaB");
+        const image = document.getElementById("sealImageB");
+        if (wrapper) wrapper.style.display = "none";
+        if (area) area.classList.remove("has-seal");
+        if (image) image.src = "";
+        localStorage.removeItem("sellerSealImageB");
+        localStorage.removeItem("sellerSealPositionB");
     }
 
-
-    /* =====================================================
-       初始化上传按钮
-    ===================================================== */
-
-    document.addEventListener(
-        "DOMContentLoaded",
-        function() {
-
-            const sealInput =
-                document.getElementById(
-                    "sealInput"
-                );
-
-
-            const sealInputB =
-                document.getElementById(
-                    "sealInputB"
-                );
-
-
-            if (sealInput) {
-
-                sealInput.addEventListener(
-                    "change",
-                    uploadSeal
-                );
-
-            }
-
-
-            if (sealInputB) {
-
-                sealInputB.addEventListener(
-                    "change",
-                    uploadSealB
-                );
-
-            }
-
-
-            /*
-             * 页面加载后恢复印章
-             */
-            restoreSeal("A");
-
-            restoreSeal("B");
-
-        }
-    );
-
-
-    /* =====================================================
-       合同：截图
-    ===================================================== */
+    document.addEventListener("DOMContentLoaded", function() {
+        const sealInput = document.getElementById("sealInput");
+        const sealInputB = document.getElementById("sealInputB");
+        if (sealInput) sealInput.addEventListener("change", uploadSeal);
+        if (sealInputB) sealInputB.addEventListener("change", uploadSealB);
+        restoreSeal("A");
+        restoreSeal("B");
+        loadContract();
+    });
 
     async function screenshotContract() {
-
-        const paper =
-            document.getElementById(
-                "contractPaper"
-            );
-
-
-        if (!paper) {
-
-            return;
-
-        }
-
-
-        paper.classList.add(
-            "contract-capture-mode"
-        );
-
-
+        const paper = document.getElementById("contractPaper");
+        if (!paper) return;
+        window.scrollTo(0, 0);
+        paper.classList.add("contract-capture-mode");
         try {
-
-            const canvas =
-                await html2canvas(
-                    paper,
-                    {
-
-                        scale: 2,
-
-                        useCORS: true,
-
-                        backgroundColor:
-                            "#ffffff",
-
-                        logging:
-                            false
-
-                    }
-                );
-
-
-            const link =
-                document.createElement(
-                    "a"
-                );
-
-
-            link.download =
-                "卖家质保金合同.png";
-
-
-            link.href =
-                canvas.toDataURL(
-                    "image/png"
-                );
-
-
+            const canvas = await html2canvas(paper, {
+                scale: 2,
+                useCORS: true,
+                backgroundColor: "#ffffff",
+                height: paper.scrollHeight + 30,
+                windowHeight: paper.scrollHeight + 30,
+                logging: false
+            });
+            const link = document.createElement("a");
+            link.download = "卖家质保金合同.png";
+            link.href = canvas.toDataURL("image/png");
             link.click();
-
-
         } catch (error) {
-
-            console.error(
-                error
-            );
-
-
-            alert(
-                "截图失败，请确认网络正常后重新尝试。"
-            );
-
+            alert("截图失败，请确认网络正常后重新尝试。");
         } finally {
-
-            paper.classList.remove(
-                "contract-capture-mode"
-            );
-
+            paper.classList.remove("contract-capture-mode");
         }
-
     }
-
-
-    /* =====================================================
-       合同：打印
-    ===================================================== */
 
     function printContract() {
-
         window.print();
-
     }
-
-
-    /* =====================================================
-       合同：恢复默认
-    ===================================================== */
 
     function clearContract() {
-
-        const ok =
-            confirm(
-                "确定要恢复合同默认内容吗？当前修改内容将被清除。"
-            );
-
-
-        if (!ok) {
-
-            return;
-
-        }
-
-
-        localStorage.removeItem(
-            "sellerContractContentV2"
-        );
-
-
-        localStorage.removeItem(
-            "sellerSealImageA"
-        );
-
-
-        localStorage.removeItem(
-            "sellerSealImageB"
-        );
-
-
-        localStorage.removeItem(
-            "sellerSealPositionA"
-        );
-
-
-        localStorage.removeItem(
-            "sellerSealPositionB"
-        );
-
-
+        if (!confirm("确定要恢复合同默认内容吗？当前修改内容将被清除。")) return;
+        localStorage.removeItem("sellerContractContentV3");
+        localStorage.removeItem("sellerSealImageA");
+        localStorage.removeItem("sellerSealImageB");
+        localStorage.removeItem("sellerSealPositionA");
+        localStorage.removeItem("sellerSealPositionB");
         location.reload();
-
     }
-
-
-    /* =====================================================
-       解冻金按钮显示逻辑
-    ===================================================== */
 
     function checkShowBtn() {
-
-        const page =
-            document.getElementById(
-                "withdraw"
-            );
-
-
-        if (!page) {
-
-            return;
-
-        }
-
-
-        const inputs =
-            page.querySelectorAll(
-                "input, textarea"
-            );
-
-
-        let allFilled =
-            true;
-
-
-        inputs.forEach(
-            function(input) {
-
-                if (
-                    input.value.trim() === ""
-                ) {
-
-                    allFilled =
-                        false;
-
-                }
-
-            }
-        );
-
-
-        const button =
-            document.getElementById(
-                "withdrawSubmitBtn"
-            );
-
-
-        if (button) {
-
-            button.style.display =
-                allFilled
-                    ? "inline-block"
-                    : "none";
-
-        }
-
+        const page = document.getElementById("withdraw");
+        if (!page) return;
+        const inputs = page.querySelectorAll("input, textarea");
+        let allFilled = true;
+        inputs.forEach(input => {
+            if (input.value.trim() === "") allFilled = false;
+        });
+        const button = document.getElementById("withdrawSubmitBtn");
+        if (button) button.style.display = allFilled ? "inline-block" : "none";
     }
-
 </script>
 
 </body>
-
 </html>
